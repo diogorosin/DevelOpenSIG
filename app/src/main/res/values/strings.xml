@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">SIG</string>
+    <string name="start">Iniciar</string>
+    <string name="preview">Voltar</string>
+    <string name="next">Avançar</string>
+    <string name="skip">Pular</string>
+    <string name="finish">Finalizar</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="government">Órgão Público</string>
+    <string name="sign_in">Acessar</string>
+
+    <!-- AccountActivity -->
+    <string name="account_welcome">Bem-vindo ao <b>develOpen SIG</b>.</string>
+    <string name="account_welcome_text"> Esse aplicativo contém informações sigilosas sobre população e território.
+        O servidor público ou qualquer outra pessoa que divulgar, expor ou utilizar de forma indevida essas informações
+        será responsabilizado nos termos da lei.</string>
+    <string name="account_login">Informe suas credenciais para efetuar o acesso:</string>
+    <string name="account_government">Selecione o órgão público e pressione avançar:</string>
+    <string name="account_finish">Parabéns! Dispositivo configurado com sucesso.</string>
+
+    <!-- Messages        -->
+    <string name="error_invalid_email">O login informado é inválido.</string>
+    <string name="error_invalid_password">A senha informada é inválida.</string>
+    <string name="error_user_not_active">O usuário não está ativo.</string>
+    <string name="error_invalid_name">O nome informado é inválido.</string>
+    <string name="error_field_required">O preenchimento desse campo é obrigatório.</string>
+
+    <!-- Dialogs         -->
+    <string name="dlg_title_login_failure">Não foi possível efetuar o login:</string>
+    <string name="dlg_title_request_failure">Não foi possível concluir a requisição:</string>
+    <string name="dlg_title_configuration_failure">Não foi possível configurar o dispositivo:</string>
+    <string name="button_try_again">Tentar novamente</string>
+    <string name="button_ok">Ok</string>
+
+</resources>

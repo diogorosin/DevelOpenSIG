@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingTop="10dp"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    android:weightSum="1">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/ic_launcher_foreground" />
+
+    <TextView
+        android:id="@+id/welcome_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.17"
+        android:gravity="center|center|center"
+        android:text="@string/account_welcome"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/welcome_l1_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.17"
+        android:gravity="center|center|center"
+        android:text="@string/account_welcome_text"
+        android:textSize="14sp"/>
+
+</LinearLayout>
