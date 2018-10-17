@@ -17,12 +17,16 @@
     <color name="colorBlueMedium">#5e9cea</color>
     <color name="colorBlueDark">#4b89da</color>
 
+    <color name="colorBlackLight">#808080</color>
+    <color name="colorBlackMedium">#464646</color>
+    <color name="colorBlackDark">#1e1e1e</color>
+
     <!-- SISTEMA           -->
     <color name="colorPrimary">@color/colorGreyLight</color>
-    <color name="colorPrimaryDark">#808080</color>
-    <color name="colorAccent">#515151</color>
+    <color name="colorPrimaryDark">@color/colorBlackLight</color>
+    <color name="colorAccent">@color/colorBlackMedium</color>
 
     <!-- ACCOUNT           -->
-    <color name="colorStatusBar">#212121</color>
+    <color name="colorStatusBar">@color/colorBlackDark</color>
 
 </resources>

@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -197,11 +198,11 @@ public class LoginActivity extends AppCompatActivity
 
         editor.apply();
 
-        //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        Intent intent = new Intent(LoginActivity.this, MapActivity.class);
 
-        //startActivity(intent);
+        startActivity(intent);
 
-        //finish();
+        finish();
 
     }
 

@@ -1,9 +1,11 @@
 package br.com.developen.sig.util;
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import br.com.developen.sig.database.AddressDAO;
 import br.com.developen.sig.database.AddressEdificationDAO;
@@ -25,6 +27,7 @@ import br.com.developen.sig.database.StateDAO;
 import br.com.developen.sig.database.StateVO;
 import br.com.developen.sig.database.SubjectDAO;
 import br.com.developen.sig.database.SubjectVO;
+import br.com.developen.sig.database.SubjectView;
 
 
 @Database(entities = {
@@ -37,7 +40,8 @@ import br.com.developen.sig.database.SubjectVO;
         IndividualVO.class,
         OrganizationVO.class,
         StateVO.class,
-        SubjectVO.class},
+        SubjectVO.class,
+        SubjectView.class},
         version = 001, exportSchema = false)
 public abstract class DB extends RoomDatabase {
 
@@ -50,7 +54,21 @@ public abstract class DB extends RoomDatabase {
             INSTANCE = Room
                     .databaseBuilder(context.getApplicationContext(), DB.class, "sig-database")
                     .allowMainThreadQueries()
-                    .build();
+                    .addCallback(new RoomDatabase.Callback() {
+                        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                            super.onCreate(db);
+                            db.execSQL("DROP TABLE IF EXISTS SubjectView");
+                            db.execSQL("CREATE VIEW IF NOT EXISTS SubjectView " +
+                                    "AS SELECT I.identifier, I.name AS nameOrDenomination " +
+                                    "FROM Subject S1 " +
+                                    "INNER JOIN Individual I ON I.identifier = S1.identifier " +
+                                    "UNION ALL " +
+                                    "SELECT O.identifier, O.denomination AS nameOrDenomination " +
+                                    "FROM Subject S2 " +
+                                    "INNER JOIN Organization O ON O.identifier = S2.identifier"
+                            );
+                        }
+                    }).build();
 
         }
 

@@ -48,6 +48,10 @@ dependencies {
     implementation 'com.code-troopers.betterpickers:library:3.1.0'
     //HashID
     implementation 'org.hashids:hashids:1.0.3'
+    //Maps
+    implementation 'com.google.android.gms:play-services-maps:15.0.1'
+    //Search
+    implementation 'com.github.arimorty:floatingsearchview:2.1.1'
 }
 
 configurations {

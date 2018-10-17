@@ -9,6 +9,9 @@
     <string name="password">Senha</string>
     <string name="government">Órgão Público</string>
     <string name="sign_in">Acessar</string>
+    <string name="action_settings">Settings</string>
+    <string name="search_hint">Habitantes, locais, etc...</string>
+    <string name="go">Ir</string>
 
     <!-- AccountActivity -->
     <string name="account_welcome">Bem-vindo ao <b>develOpen SIG</b>.</string>
@@ -32,5 +35,7 @@
     <string name="dlg_title_configuration_failure">Não foi possível configurar o dispositivo:</string>
     <string name="button_try_again">Tentar novamente</string>
     <string name="button_ok">Ok</string>
-
+    <string name="settings">Configurações</string>
+    <string name="exit">Sair</string>
+    <string name="home">Início</string>
 </resources>
