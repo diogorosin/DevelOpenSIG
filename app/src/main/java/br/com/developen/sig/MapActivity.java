@@ -1,6 +1,8 @@
 package br.com.developen.sig;
 
 import android.Manifest;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,15 +12,15 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -34,24 +36,41 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.maps.android.clustering.Cluster;
+import com.google.maps.android.clustering.ClusterManager;
+import com.google.maps.android.clustering.algo.NonHierarchicalViewBasedAlgorithm;
+import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import br.com.developen.sig.database.AddressEdificationSubjectModel;
+import br.com.developen.sig.database.AddressVO;
+import br.com.developen.sig.repository.AddressRepository;
 import br.com.developen.sig.task.FindAddressesBySubjectNameOrDenominationAsyncTask;
 import br.com.developen.sig.util.Constants;
 import br.com.developen.sig.util.Messaging;
+import br.com.developen.sig.widget.AddressClusterItem;
+import br.com.developen.sig.widget.AddressClusterRenderer;
+import br.com.developen.sig.widget.AddressEdificationSubjectSuggestions;
+import br.com.developen.sig.widget.MarkerInfoWindowAdapter;
 
 
 public class MapActivity extends FragmentActivity
         implements OnMapReadyCallback,
         NavigationView.OnNavigationItemSelectedListener,
-        FindAddressesBySubjectNameOrDenominationAsyncTask.Listener{
+        FindAddressesBySubjectNameOrDenominationAsyncTask.Listener,
+        ClusterManager.OnClusterClickListener<AddressClusterItem>,
+        ClusterManager.OnClusterInfoWindowClickListener<AddressClusterItem>,
+        ClusterManager.OnClusterItemClickListener<AddressClusterItem>,
+        ClusterManager.OnClusterItemInfoWindowClickListener<AddressClusterItem>{
 
 
     private static final int FINE_LOCATION_PERMISSION_REQUEST = 1;
+
+
+    private ClusterManager<AddressClusterItem> clusterManager;
 
 
     private HashMap<Integer, Marker> markers;
@@ -63,6 +82,15 @@ public class MapActivity extends FragmentActivity
     private LocationManager locationManager;
 
     private SharedPreferences preferences;
+
+    private AddressRepository addressRepository;
+
+
+    private MenuItem menuItemNormal;
+
+    private MenuItem menuItemTerrain;
+
+    private MenuItem menuItemSatellite;
 
 
     private LocationListener locationListener = new LocationListener() {
@@ -80,18 +108,28 @@ public class MapActivity extends FragmentActivity
 
     protected void onCreate(Bundle savedInstanceState) {
 
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_map);
 
         final SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.menu_map);
 
         mapFragment.getMapAsync(this);
+
 
         NavigationView navigationView = findViewById(R.id.activity_main_navigator);
 
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        menuItemNormal = navigationView.getMenu().findItem(R.id.menu_map_type_normal);
+
+        menuItemSatellite = navigationView.getMenu().findItem(R.id.menu_map_type_satellite);
+
+        menuItemTerrain = navigationView.getMenu().findItem(R.id.menu_map_type_terrain);
+
 
         DrawerLayout drawerLayout = findViewById(R.id.activity_map_drawer);
 
@@ -105,6 +143,7 @@ public class MapActivity extends FragmentActivity
         userTextView.setText(preferences.getString(Constants.USER_NAME_PROPERTY,"Desconhecido"));
 
         governmentTextView.setText(preferences.getString(Constants.GOVERNMENT_DENOMINATION_PROPERTY,"Desconhecido"));
+
 
         searchView = findViewById(R.id.floating_search_view);
 
@@ -146,11 +185,11 @@ public class MapActivity extends FragmentActivity
 
             public void onSuggestionClicked(final SearchSuggestion searchSuggestion) {
 
-                AddressEdificationSubjectSuggestions suggestion = (AddressEdificationSubjectSuggestions) searchSuggestion;
+     /*           AddressEdificationSubjectSuggestions suggestion = (AddressEdificationSubjectSuggestions) searchSuggestion;
 
-                if (getMarkers().get(suggestion.mAddressEdificationSubject.getAddress().getIdentifier()) != null) {
+                if (getMarkers().get(suggestion.getmAddressEdificationSubject().getAddress().getIdentifier()) != null) {
 
-                    final Marker marker = getMarkers().get(suggestion.mAddressEdificationSubject.getAddress().getIdentifier());
+                    final Marker marker = getMarkers().get(suggestion.getmAddressEdificationSubject().getAddress().getIdentifier());
 
                     CameraPosition cameraPosition = new CameraPosition.Builder()
                             .target(marker.getPosition())
@@ -174,7 +213,7 @@ public class MapActivity extends FragmentActivity
 
                 searchView.clearSearchFocus();
 
-                searchView.setSearchText(((AddressEdificationSubjectSuggestions) searchSuggestion).mAddressEdificationSubject.getSubject().getNameOrDenomination());
+                searchView.setSearchText(((AddressEdificationSubjectSuggestions) searchSuggestion).getmAddressEdificationSubject().getSubject().getNameOrDenomination()); */
 
             }
 
@@ -188,7 +227,7 @@ public class MapActivity extends FragmentActivity
 
                 switch(item.getItemId()) {
 
-                    case R.id.action_place:
+                    case R.id.menu_map_search_localization:
 
                         goToMyLocation();
 
@@ -203,6 +242,145 @@ public class MapActivity extends FragmentActivity
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
     }
+
+
+
+
+    public void onSuccess(List<AddressEdificationSubjectModel> list) {
+
+        List<SearchSuggestion> result = new ArrayList<>();
+
+        for (AddressEdificationSubjectModel addressEdificationSubjectModel : list)
+
+            result.add(new AddressEdificationSubjectSuggestions(addressEdificationSubjectModel));
+
+        searchView.swapSuggestions(result);
+
+    }
+
+
+    public void onFailure(Messaging messaging) {}
+
+
+
+    public void onBackPressed() {
+
+        DrawerLayout drawer = findViewById(R.id.activity_map_drawer);
+
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+
+            drawer.closeDrawer(GravityCompat.START);
+
+        } else {
+
+            super.onBackPressed();
+
+        }
+
+    }
+
+
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        DrawerLayout drawer = findViewById(R.id.activity_map_drawer);
+
+        switch (item.getItemId()){
+
+            case R.id.menu_map_type_normal:
+
+                menuItemTerrain.setChecked(false);
+
+                menuItemSatellite.setChecked(false);
+
+                getGoogleMap().setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+                drawer.closeDrawers();
+
+                break;
+
+            case R.id.menu_map_type_terrain:
+
+                menuItemNormal.setChecked(false);
+
+                menuItemSatellite.setChecked(false);
+
+                getGoogleMap().setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+
+                drawer.closeDrawers();
+
+                break;
+
+            case R.id.menu_map_type_satellite:
+
+                menuItemNormal.setChecked(false);
+
+                menuItemTerrain.setChecked(false);
+
+                getGoogleMap().setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+
+                drawer.closeDrawers();
+
+                break;
+
+            case R.id.menu_settings:
+
+                drawer.closeDrawers();
+
+                //Intent saleIntent = new Intent(MainActivity.this, CatalogActivity.class);
+
+                //startActivity(saleIntent);
+
+                break;
+
+            case R.id.menu_logout:
+
+                SharedPreferences.Editor editor = preferences.edit();
+
+                editor.remove(Constants.USER_IDENTIFIER_PROPERTY);
+
+                editor.remove(Constants.USER_NAME_PROPERTY);
+
+                editor.remove(Constants.USER_LOGIN_PROPERTY);
+
+                editor.apply();
+
+                drawer.closeDrawer(GravityCompat.START);
+
+                Intent intent = new Intent(MapActivity.this, LoginActivity.class);
+
+                startActivity(intent);
+
+                finish();
+
+                break;
+
+        }
+
+        return true;
+
+    }
+
+
+
+
+
+
+    //MAPS------------------------------------------------------------
+
+
+    public GoogleMap getGoogleMap() {
+
+        return googleMap;
+
+    }
+
+
+    public void setGoogleMap(GoogleMap googleMap) {
+
+        this.googleMap = googleMap;
+
+    }
+
 
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
 
@@ -261,195 +439,96 @@ public class MapActivity extends FragmentActivity
 
     public void onMapReady(GoogleMap googleMap) {
 
-        this.googleMap = googleMap;
+        setGoogleMap(googleMap);
 
-        /*
-        MarkerInfoWindowAdapter markerInfoWindowAdapter = new MarkerInfoWindowAdapter(getApplicationContext());
+        getGoogleMap().getUiSettings().setCompassEnabled(false);
 
-        googleMap.setInfoWindowAdapter(markerInfoWindowAdapter);
+        getGoogleMap().getUiSettings().setMapToolbarEnabled(false);
 
-        googleMap.getUiSettings().setCompassEnabled(false);
+        getGoogleMap().getUiSettings().setMyLocationButtonEnabled(false);
 
-        googleMap.getUiSettings().setMapToolbarEnabled(false);
 
-        googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+        DisplayMetrics metrics = new DisplayMetrics();
 
-        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-            public void onInfoWindowClick(Marker marker) {
+        clusterManager = new ClusterManager<>(this, getGoogleMap());
 
-                Uri gmmIntentUri = Uri.parse("google.navigation:q=" + marker.getPosition().latitude + "," + marker.getPosition().longitude);
+        clusterManager.setAlgorithm(new NonHierarchicalViewBasedAlgorithm<AddressClusterItem>(
+                metrics.widthPixels, metrics.heightPixels));
 
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        clusterManager.setRenderer(new AddressClusterRenderer(
+                getApplicationContext(),
+                getGoogleMap(),
+                clusterManager));
 
-                mapIntent.setPackage("com.google.android.apps.maps");
+        clusterManager.getMarkerCollection().setOnInfoWindowAdapter(
+                new MarkerInfoWindowAdapter(getApplicationContext()));
 
-                startActivity(mapIntent);
+        getGoogleMap().setOnCameraIdleListener(clusterManager);
+
+        getGoogleMap().setOnMarkerClickListener(clusterManager);
+
+        getGoogleMap().setOnInfoWindowClickListener(clusterManager);
+
+        clusterManager.setOnClusterClickListener(this);
+
+        clusterManager.setOnClusterInfoWindowClickListener(this);
+
+        clusterManager.setOnClusterItemClickListener(this);
+
+        clusterManager.setOnClusterItemInfoWindowClickListener(this);
+
+        addressRepository = ViewModelProviders.of(this).get(AddressRepository.class);
+
+        addressRepository.getAddresses().observe(MapActivity.this, new Observer<List<AddressVO>>() {
+
+            public void onChanged(@Nullable List<AddressVO> addresses) {
+
+                if (addresses!=null && !addresses.isEmpty()){
+
+                    for (AddressVO address: addresses) {
+
+                        AddressClusterItem addressClusterItem = new AddressClusterItem();
+
+                        addressClusterItem.setIdentifier(address.getIdentifier());
+
+                        addressClusterItem.setDenomination(address.getDenomination());
+
+                        addressClusterItem.setNumber(address.getNumber());
+
+                        addressClusterItem.setReference(address.getReference());
+
+                        addressClusterItem.setDistrict(address.getDistrict());
+
+                        addressClusterItem.setCity(address.getCity());
+
+                        addressClusterItem.setPostalCode(address.getPostalCode());
+
+                        addressClusterItem.setPosition(new LatLng(address.getLatitude(), address.getLongitude()));
+
+                        clusterManager.addItem(addressClusterItem);
+
+                    }
+
+                }
 
             }
 
         });
 
-        new BindPlacesOnGoogleMapAsyncTask<>(this, googleMap).execute(); */
-
     }
 
-    public void onSuccess(List<AddressEdificationSubjectModel> list) {
-
-        List<SearchSuggestion> result = new ArrayList<>();
-
-        for (AddressEdificationSubjectModel addressEdificationSubjectModel : list)
-
-            result.add(new AddressEdificationSubjectSuggestions(addressEdificationSubjectModel));
-
-        searchView.swapSuggestions(result);
-
+    public boolean onClusterClick(Cluster<AddressClusterItem> cluster) {
+        return false;
     }
 
-    public void onFailure(Messaging messaging) {}
+    public void onClusterInfoWindowClick(Cluster<AddressClusterItem> cluster) {}
 
-    public HashMap<Integer, Marker> getMarkers() {
-
-        if (markers == null)
-
-            markers = new HashMap<>();
-
-        return markers;
-
+    public boolean onClusterItemClick(AddressClusterItem addressClusterItem) {
+        return false;
     }
 
-    private static class AddressEdificationSubjectSuggestions implements SearchSuggestion {
-
-        private final AddressEdificationSubjectModel mAddressEdificationSubject;
-
-        public static final Parcelable.Creator<AddressEdificationSubjectSuggestions> CREATOR = new Parcelable.Creator<AddressEdificationSubjectSuggestions>() {
-
-            public AddressEdificationSubjectSuggestions createFromParcel(Parcel in) {
-
-                return new AddressEdificationSubjectSuggestions(in);
-
-            }
-
-            public AddressEdificationSubjectSuggestions[] newArray(int size) {
-
-                return new AddressEdificationSubjectSuggestions[size];
-
-            }
-
-        };
-
-        public AddressEdificationSubjectSuggestions(AddressEdificationSubjectModel addressEdificationSubjectModel) {
-
-            mAddressEdificationSubject = addressEdificationSubjectModel;
-
-        }
-
-        public String getBody() {
-
-            return mAddressEdificationSubject.getSubject().getIdentifier().toString();
-
-        }
-
-        public int describeContents() {
-
-            return 0;
-
-        }
-
-        public void writeToParcel(Parcel dest, int flags) {
-
-            dest.writeString(mAddressEdificationSubject.getSubject().getNameOrDenomination());
-
-        }
-
-        private AddressEdificationSubjectSuggestions(Parcel in) {
-
-            mAddressEdificationSubject = (AddressEdificationSubjectModel) in.readSerializable();
-
-        }
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void onBackPressed() {
-
-        DrawerLayout drawer = findViewById(R.id.activity_map_drawer);
-
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-
-            drawer.closeDrawer(GravityCompat.START);
-
-        } else {
-
-            super.onBackPressed();
-
-        }
-
-    }
-
-
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        DrawerLayout drawer = findViewById(R.id.activity_map_drawer);
-
-        switch (item.getItemId()){
-
-            case R.id.menu_main_home:
-
-                break;
-
-            case R.id.menu_main_settings:
-
-                drawer.closeDrawers();
-
-                //Intent saleIntent = new Intent(MainActivity.this, CatalogActivity.class);
-
-                //startActivity(saleIntent);
-
-                break;
-
-            case R.id.menu_main_logout:
-
-                SharedPreferences.Editor editor = preferences.edit();
-
-                editor.remove(Constants.USER_IDENTIFIER_PROPERTY);
-
-                editor.remove(Constants.USER_NAME_PROPERTY);
-
-                editor.remove(Constants.USER_LOGIN_PROPERTY);
-
-                editor.apply();
-
-                drawer.closeDrawer(GravityCompat.START);
-
-                Intent intent = new Intent(MapActivity.this, LoginActivity.class);
-
-                startActivity(intent);
-
-                finish();
-
-                break;
-
-        }
-
-        return true;
-
-    }
+    public void onClusterItemInfoWindowClick(AddressClusterItem addressClusterItem) {}
 
 }

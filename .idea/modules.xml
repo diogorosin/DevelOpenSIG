@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DevelOpenSIG.iml" filepath="$PROJECT_DIR$/DevelOpenSIG.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-maps-utils-release/android-maps-utils-release.iml" filepath="$PROJECT_DIR$/android-maps-utils-release/android-maps-utils-release.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

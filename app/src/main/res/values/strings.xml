@@ -38,4 +38,9 @@
     <string name="settings">Configurações</string>
     <string name="exit">Sair</string>
     <string name="home">Início</string>
+    <string name="location">Minha Localização</string>
+    <string name="normal">Normal</string>
+    <string name="map_satellite">Satélite</string>
+    <string name="map_terrain">Terreno</string>
+    <string name="map">Mapa</string>
 </resources>
