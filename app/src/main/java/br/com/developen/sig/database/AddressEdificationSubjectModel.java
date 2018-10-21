@@ -5,20 +5,20 @@ import android.arch.persistence.room.Embedded;
 public class AddressEdificationSubjectModel {
 
     @Embedded(prefix = "address_")
-    private AddressVO address;
+    private AddressModel address;
 
     private String edification;
 
     @Embedded(prefix = "subject_")
     private SubjectView subject;
 
-    public AddressVO getAddress() {
+    public AddressModel getAddress() {
 
         return address;
 
     }
 
-    public void setAddress(AddressVO address) {
+    public void setAddress(AddressModel address) {
 
         this.address = address;
 

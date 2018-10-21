@@ -39,14 +39,13 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.clustering.algo.NonHierarchicalViewBasedAlgorithm;
-import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import br.com.developen.sig.database.AddressEdificationSubjectModel;
-import br.com.developen.sig.database.AddressVO;
+import br.com.developen.sig.database.AddressModel;
+import br.com.developen.sig.database.SubjectView;
 import br.com.developen.sig.repository.AddressRepository;
 import br.com.developen.sig.task.FindAddressesBySubjectNameOrDenominationAsyncTask;
 import br.com.developen.sig.util.Constants;
@@ -54,7 +53,6 @@ import br.com.developen.sig.util.Messaging;
 import br.com.developen.sig.widget.AddressClusterItem;
 import br.com.developen.sig.widget.AddressClusterRenderer;
 import br.com.developen.sig.widget.AddressEdificationSubjectSuggestions;
-import br.com.developen.sig.widget.MarkerInfoWindowAdapter;
 
 
 public class MapActivity extends FragmentActivity
@@ -73,7 +71,7 @@ public class MapActivity extends FragmentActivity
     private ClusterManager<AddressClusterItem> clusterManager;
 
 
-    private HashMap<Integer, Marker> markers;
+    private AddressClusterItem addressClusterItem;
 
     private GoogleMap googleMap;
 
@@ -244,8 +242,6 @@ public class MapActivity extends FragmentActivity
     }
 
 
-
-
     public void onSuccess(List<AddressEdificationSubjectModel> list) {
 
         List<SearchSuggestion> result = new ArrayList<>();
@@ -260,7 +256,6 @@ public class MapActivity extends FragmentActivity
 
 
     public void onFailure(Messaging messaging) {}
-
 
 
     public void onBackPressed() {
@@ -361,10 +356,6 @@ public class MapActivity extends FragmentActivity
     }
 
 
-
-
-
-
     //MAPS------------------------------------------------------------
 
 
@@ -399,6 +390,7 @@ public class MapActivity extends FragmentActivity
         }
 
     }
+
 
     public void goToMyLocation() {
 
@@ -437,6 +429,7 @@ public class MapActivity extends FragmentActivity
 
     }
 
+
     public void onMapReady(GoogleMap googleMap) {
 
         setGoogleMap(googleMap);
@@ -446,7 +439,6 @@ public class MapActivity extends FragmentActivity
         getGoogleMap().getUiSettings().setMapToolbarEnabled(false);
 
         getGoogleMap().getUiSettings().setMyLocationButtonEnabled(false);
-
 
         DisplayMetrics metrics = new DisplayMetrics();
 
@@ -463,7 +455,78 @@ public class MapActivity extends FragmentActivity
                 clusterManager));
 
         clusterManager.getMarkerCollection().setOnInfoWindowAdapter(
-                new MarkerInfoWindowAdapter(getApplicationContext()));
+                new GoogleMap.InfoWindowAdapter(){
+                    public View getInfoWindow(Marker marker) {
+                        return null;
+                    }
+                    public View getInfoContents(Marker marker) {
+
+                        View v = getLayoutInflater().inflate(R.layout.activity_map_windowinfo, null);
+
+                        TextView subjectTextView = v.findViewById(R.id.marker_subject_textview);
+
+                        TextView streetTextView = v.findViewById(R.id.marker_denomination_textview);
+
+                        TextView numberTextView = v.findViewById(R.id.marker_number_textview);
+
+                        TextView districtTextView = v.findViewById(R.id.marker_district_textview);
+
+                        TextView cityTextView = v.findViewById(R.id.marker_city_textview);
+
+                        if(addressClusterItem!=null){
+
+                            String subjects = "";
+
+                            for (SubjectView subjectView: addressRepository.
+                                    getDao().getSubjectsOfAddress(addressClusterItem.getIdentifier())) {
+
+                                subjects += subjectView.getNameOrDenomination() + '\n';
+
+                            }
+
+                            boolean hasSubjects = !subjects.isEmpty();
+
+                            if (hasSubjects)
+
+                                subjectTextView.setText(subjects);
+
+                            //Street
+                            boolean hasStreet = addressClusterItem.getDenomination() != null && !addressClusterItem.getDenomination().isEmpty();
+
+                            if (hasStreet)
+
+                                streetTextView.setText(addressClusterItem.getDenomination());
+
+                            //Number
+                            boolean hasNumber = addressClusterItem.getNumber() != null && !addressClusterItem.getNumber().isEmpty();
+
+                            if (hasNumber)
+
+                                numberTextView.setText(", Nº " + addressClusterItem.getNumber());
+
+                            //District
+                            boolean hasDistrict = addressClusterItem.getDistrict() != null && !addressClusterItem.getDistrict().isEmpty();
+
+                            if (hasDistrict)
+
+                                districtTextView.setText(addressClusterItem.getDistrict());
+
+                            //City
+                            boolean hasCity = addressClusterItem.getCity() != null && !addressClusterItem.getCity().isEmpty();
+
+                            if (hasCity)
+
+                                cityTextView.setText(addressClusterItem.getCity());
+
+                        }
+
+                        return v;
+
+                    }
+                }
+        );
+
+        getGoogleMap().setInfoWindowAdapter(clusterManager.getMarkerManager());
 
         getGoogleMap().setOnCameraIdleListener(clusterManager);
 
@@ -481,13 +544,15 @@ public class MapActivity extends FragmentActivity
 
         addressRepository = ViewModelProviders.of(this).get(AddressRepository.class);
 
-        addressRepository.getAddresses().observe(MapActivity.this, new Observer<List<AddressVO>>() {
+        addressRepository.getAddresses().observe(MapActivity.this, new Observer<List<AddressModel>>() {
 
-            public void onChanged(@Nullable List<AddressVO> addresses) {
+            public void onChanged(@Nullable List<AddressModel> addresses) {
+
+                clusterManager.clearItems();
 
                 if (addresses!=null && !addresses.isEmpty()){
 
-                    for (AddressVO address: addresses) {
+                    for (AddressModel address: addresses) {
 
                         AddressClusterItem addressClusterItem = new AddressClusterItem();
 
@@ -501,7 +566,7 @@ public class MapActivity extends FragmentActivity
 
                         addressClusterItem.setDistrict(address.getDistrict());
 
-                        addressClusterItem.setCity(address.getCity());
+                        addressClusterItem.setCity(address.getCity().toString());
 
                         addressClusterItem.setPostalCode(address.getPostalCode());
 
@@ -519,16 +584,27 @@ public class MapActivity extends FragmentActivity
 
     }
 
+
     public boolean onClusterClick(Cluster<AddressClusterItem> cluster) {
+
         return false;
+
     }
+
 
     public void onClusterInfoWindowClick(Cluster<AddressClusterItem> cluster) {}
 
+
     public boolean onClusterItemClick(AddressClusterItem addressClusterItem) {
+
+        this.addressClusterItem = addressClusterItem;
+
         return false;
+
     }
 
+
     public void onClusterItemInfoWindowClick(AddressClusterItem addressClusterItem) {}
+
 
 }

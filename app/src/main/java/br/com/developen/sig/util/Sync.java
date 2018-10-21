@@ -375,8 +375,6 @@ public class Sync {
 
             e.printStackTrace();
 
-            Log.d("passou", e.getMessage());
-
             success = false;
 
         } finally {

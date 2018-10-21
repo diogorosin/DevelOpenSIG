@@ -18,6 +18,9 @@ public interface CityDAO {
     @Query("SELECT COUNT(*) > 0 FROM City C WHERE C.identifier = :identifier")
     Boolean exists(int identifier);
 
+    @Query("SELECT COUNT(*) FROM City C")
+    Integer count();
+
     @Update
     void update(CityVO cityVO);
 

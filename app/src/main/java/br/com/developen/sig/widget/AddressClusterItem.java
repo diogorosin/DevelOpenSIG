@@ -17,7 +17,7 @@ public class AddressClusterItem implements ClusterItem {
 
     private Integer postalCode;
 
-    private Integer city;
+    private String city;
 
     private LatLng position;
 
@@ -93,13 +93,13 @@ public class AddressClusterItem implements ClusterItem {
 
     }
 
-    public Integer getCity() {
+    public String getCity() {
 
         return city;
 
     }
 
-    public void setCity(Integer city) {
+    public void setCity(String city) {
 
         this.city = city;
 

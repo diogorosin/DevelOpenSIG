@@ -18,6 +18,9 @@ public interface CountryDAO {
     @Query("SELECT COUNT(*) > 0 FROM Country C WHERE C.identifier = :identifier")
     Boolean exists(int identifier);
 
+    @Query("SELECT COUNT(*) FROM Country C")
+    Integer count();
+
     @Update
     void update(CountryVO countryVO);
 

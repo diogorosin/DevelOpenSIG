@@ -35,9 +35,10 @@ public interface AddressEdificationSubjectDAO {
             " A.reference AS 'address_reference', " +
             " A.district AS 'address_district', " +
             " A.postalCode AS 'address_postalCode', " +
-            " A.city AS 'address_city', " +
             " A.latitude AS 'address_latitude', " +
             " A.longitude AS 'address_longitude', " +
+            " C.identifier AS 'city_identifier', " +
+            " C.denomination AS 'city_denomination', " +
             " AE.edification AS 'edification', " +
             " SV.identifier AS 'subject_identifier', " +
             " SV.nameOrDenomination AS 'subject_nameOrDenomination' " +

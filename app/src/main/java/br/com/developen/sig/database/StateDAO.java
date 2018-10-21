@@ -18,6 +18,9 @@ public interface StateDAO {
     @Query("SELECT COUNT(*) > 0 FROM State S WHERE S.identifier = :identifier")
     Boolean exists(int identifier);
 
+    @Query("SELECT COUNT(*) FROM State S")
+    Integer count();
+
     @Update
     void update(StateVO stateVO);
 

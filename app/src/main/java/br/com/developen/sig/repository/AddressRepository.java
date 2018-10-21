@@ -7,6 +7,7 @@ import android.arch.lifecycle.LiveData;
 import java.util.List;
 
 import br.com.developen.sig.database.AddressDAO;
+import br.com.developen.sig.database.AddressModel;
 import br.com.developen.sig.database.AddressVO;
 import br.com.developen.sig.util.DB;
 
@@ -16,7 +17,7 @@ public class AddressRepository extends AndroidViewModel {
 
     private AddressDAO dao;
 
-    private LiveData<List<AddressVO>> addresses;
+    private LiveData<List<AddressModel>> addresses;
 
     public AddressRepository(Application application){
 
@@ -42,7 +43,7 @@ public class AddressRepository extends AndroidViewModel {
 
     }
 
-    public LiveData<List<AddressVO>> getAddresses(){
+    public LiveData<List<AddressModel>> getAddresses(){
 
         if (addresses==null)
 
