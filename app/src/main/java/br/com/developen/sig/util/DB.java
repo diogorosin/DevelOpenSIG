@@ -59,11 +59,11 @@ public abstract class DB extends RoomDatabase {
                             super.onCreate(db);
                             db.execSQL("DROP TABLE IF EXISTS SubjectView");
                             db.execSQL("CREATE VIEW IF NOT EXISTS SubjectView " +
-                                    "AS SELECT I.identifier, I.name AS nameOrDenomination " +
+                                    "AS SELECT I.identifier, I.name AS nameOrDenomination, 'I' AS type " +
                                     "FROM Subject S1 " +
                                     "INNER JOIN Individual I ON I.identifier = S1.identifier " +
                                     "UNION ALL " +
-                                    "SELECT O.identifier, O.denomination AS nameOrDenomination " +
+                                    "SELECT O.identifier, O.denomination AS nameOrDenomination, 'O' AS type " +
                                     "FROM Subject S2 " +
                                     "INNER JOIN Organization O ON O.identifier = S2.identifier"
                             );

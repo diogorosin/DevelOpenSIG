@@ -2,8 +2,11 @@ package br.com.developen.sig.widget;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
+
+import java.util.Objects;
 
 import br.com.developen.sig.database.AddressEdificationSubjectModel;
 
@@ -39,7 +42,7 @@ public class AddressEdificationSubjectSuggestions implements SearchSuggestion {
 
     public String getBody() {
 
-        return mAddressEdificationSubject.getSubject().getIdentifier().toString();
+        return mAddressEdificationSubject.getSubject().getNameOrDenomination();
 
     }
 
@@ -65,11 +68,25 @@ public class AddressEdificationSubjectSuggestions implements SearchSuggestion {
     }
 
 
-    public AddressEdificationSubjectModel getmAddressEdificationSubject() {
+    public AddressEdificationSubjectModel getAddressEdificationSubject() {
 
         return mAddressEdificationSubject;
 
     }
 
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AddressEdificationSubjectSuggestions that = (AddressEdificationSubjectSuggestions) o;
+        return Objects.equals(mAddressEdificationSubject, that.mAddressEdificationSubject);
+
+    }
+
+    public int hashCode() {
+
+        return Objects.hash(mAddressEdificationSubject);
+
+    }
 
 }

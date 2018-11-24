@@ -15,6 +15,9 @@ public class SubjectView {
     @ColumnInfo(name="nameOrDenomination")
     private String nameOrDenomination;
 
+    @ColumnInfo(name="type")
+    private String type;
+
     public Integer getIdentifier() {
 
         return identifier;
@@ -36,6 +39,18 @@ public class SubjectView {
     public void setNameOrDenomination(String nameOrDenomination) {
 
         this.nameOrDenomination = nameOrDenomination;
+
+    }
+
+    public String getType() {
+
+        return type;
+
+    }
+
+    public void setType(String type) {
+
+        this.type = type;
 
     }
 

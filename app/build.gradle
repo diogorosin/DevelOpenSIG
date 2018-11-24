@@ -51,10 +51,12 @@ dependencies {
     //HashID
     implementation 'org.hashids:hashids:1.0.3'
     //Maps
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
-    //implementation 'com.google.maps.android:android-maps-utils:0.5+'
     //Search
     implementation 'com.github.arimorty:floatingsearchview:2.1.1'
+    //Sliding
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
 }
 
 configurations {

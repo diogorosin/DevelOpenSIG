@@ -12,12 +12,15 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.DisplayMetrics;
@@ -49,13 +52,15 @@ import br.com.developen.sig.database.SubjectView;
 import br.com.developen.sig.repository.AddressRepository;
 import br.com.developen.sig.task.FindAddressesBySubjectNameOrDenominationAsyncTask;
 import br.com.developen.sig.util.Constants;
+import br.com.developen.sig.util.IconUtils;
 import br.com.developen.sig.util.Messaging;
 import br.com.developen.sig.widget.AddressClusterItem;
 import br.com.developen.sig.widget.AddressClusterRenderer;
 import br.com.developen.sig.widget.AddressEdificationSubjectSuggestions;
 
 
-public class MapActivity extends FragmentActivity
+public class MapActivity
+        extends FragmentActivity
         implements OnMapReadyCallback,
         NavigationView.OnNavigationItemSelectedListener,
         FindAddressesBySubjectNameOrDenominationAsyncTask.Listener,
@@ -69,9 +74,6 @@ public class MapActivity extends FragmentActivity
 
 
     private ClusterManager<AddressClusterItem> clusterManager;
-
-
-    private AddressClusterItem addressClusterItem;
 
     private GoogleMap googleMap;
 
@@ -112,7 +114,7 @@ public class MapActivity extends FragmentActivity
         setContentView(R.layout.activity_map);
 
         final SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.menu_map);
+                .findFragmentById(R.id.activity_map_fragment);
 
         mapFragment.getMapAsync(this);
 
@@ -143,7 +145,7 @@ public class MapActivity extends FragmentActivity
         governmentTextView.setText(preferences.getString(Constants.GOVERNMENT_DENOMINATION_PROPERTY,"Desconhecido"));
 
 
-        searchView = findViewById(R.id.floating_search_view);
+        searchView = findViewById(R.id.activity_map_fsv);
 
         searchView.attachNavigationDrawerToMenuButton(drawerLayout);
 
@@ -153,7 +155,11 @@ public class MapActivity extends FragmentActivity
 
                 AddressEdificationSubjectSuggestions addressEdificationSubjectSuggestions = (AddressEdificationSubjectSuggestions) item;
 
-//                leftIcon.setImageDrawable(ResourcesCompat.getDrawable(getResources(), IconUtils.getListIconByType(placeSuggestion.mAddressEdificationSubject.getType()), null));
+                leftIcon.setImageDrawable(ResourcesCompat.getDrawable(getResources(), IconUtils.getListIconByType(
+                        addressEdificationSubjectSuggestions.
+                                getAddressEdificationSubject().
+                                getSubject().
+                                getType()), null));
 
                 leftIcon.setColorFilter(Color.parseColor("#000000"));
 
@@ -183,35 +189,57 @@ public class MapActivity extends FragmentActivity
 
             public void onSuggestionClicked(final SearchSuggestion searchSuggestion) {
 
-     /*           AddressEdificationSubjectSuggestions suggestion = (AddressEdificationSubjectSuggestions) searchSuggestion;
+                final AddressEdificationSubjectSuggestions suggestion = (AddressEdificationSubjectSuggestions) searchSuggestion;
 
-                if (getMarkers().get(suggestion.getmAddressEdificationSubject().getAddress().getIdentifier()) != null) {
+                CameraPosition cameraPosition = new CameraPosition.Builder()
+                        .target(new LatLng(suggestion.
+                                getAddressEdificationSubject().
+                                getAddress().
+                                getLatitude(), suggestion.
+                                getAddressEdificationSubject().
+                                getAddress().
+                                getLongitude()))
+                        .zoom(getGoogleMap().getMaxZoomLevel())
+                        .bearing(0)
+                        .build();
 
-                    final Marker marker = getMarkers().get(suggestion.getmAddressEdificationSubject().getAddress().getIdentifier());
+                getGoogleMap().animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), new GoogleMap.CancelableCallback() {
 
-                    CameraPosition cameraPosition = new CameraPosition.Builder()
-                            .target(marker.getPosition())
-                            .zoom(20)
-                            .bearing(0)
-                            .build();
+                    public void onFinish() {
 
-                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), new GoogleMap.CancelableCallback() {
+                        new Handler().postDelayed(new Runnable() {
 
-                        public void onFinish() {
+                            public void run() {
 
-                            marker.showInfoWindow();
+                                for (Marker marker: clusterManager.getMarkerCollection().getMarkers()) {
 
-                        }
+                                    AddressClusterItem addressClusterItem = (AddressClusterItem) marker.getTag();
 
-                        public void onCancel() {}
+                                    if (marker.getTag() != null && addressClusterItem.
+                                            getIdentifier().equals(suggestion.
+                                            getAddressEdificationSubject().
+                                            getAddress().
+                                            getIdentifier())) {
 
-                    });
+                                        marker.showInfoWindow();
 
-                }
+                                    }
+
+                                }
+
+                            }
+
+                        }, 100);
+
+                    }
+
+                    public void onCancel() {}
+
+                });
 
                 searchView.clearSearchFocus();
 
-                searchView.setSearchText(((AddressEdificationSubjectSuggestions) searchSuggestion).getmAddressEdificationSubject().getSubject().getNameOrDenomination()); */
+                searchView.setSearchText(((AddressEdificationSubjectSuggestions) searchSuggestion).getAddressEdificationSubject().getSubject().getNameOrDenomination());
 
             }
 
@@ -235,6 +263,18 @@ public class MapActivity extends FragmentActivity
 
             }
 
+        });
+
+        FloatingActionButton fab = findViewById(R.id.activity_map_fab);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+                Intent newAddressIntent = new Intent(MapActivity.this, AddressActivity.class);
+
+                startActivity(newAddressIntent);
+
+            }
         });
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -429,8 +469,101 @@ public class MapActivity extends FragmentActivity
 
     }
 
+    public ClusterManager getClusterManager(){
+
+        if (clusterManager==null){
+
+            DisplayMetrics metrics = new DisplayMetrics();
+
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+            clusterManager = new ClusterManager<>(this, getGoogleMap());
+
+            clusterManager.setAlgorithm(new NonHierarchicalViewBasedAlgorithm<AddressClusterItem>(
+                    metrics.widthPixels, metrics.heightPixels));
+
+            clusterManager.setRenderer(new AddressClusterRenderer(
+                    getApplicationContext(),
+                    getGoogleMap(),
+                    clusterManager));
+
+            clusterManager.getMarkerCollection().setOnInfoWindowAdapter(
+                    new GoogleMap.InfoWindowAdapter(){
+                        public View getInfoWindow(Marker marker) {
+                            return null;
+                        }
+                        public View getInfoContents(Marker marker) {
+
+                            View v = getLayoutInflater().inflate(R.layout.activity_map_windowinfo, null);
+
+                            TextView subjectTextView = v.findViewById(R.id.marker_subject_textview);
+
+                            TextView streetTextView = v.findViewById(R.id.marker_denomination_textview);
+
+                            TextView numberTextView = v.findViewById(R.id.marker_number_textview);
+
+                            TextView districtTextView = v.findViewById(R.id.marker_district_textview);
+
+                            TextView cityTextView = v.findViewById(R.id.marker_city_textview);
+
+                            if(marker.getTag() != null){
+
+                                AddressClusterItem addressClusterItem = (AddressClusterItem) marker.getTag();
+
+                                String subjects = "";
+
+                                for (SubjectView subjectView: addressRepository.
+                                        getDao().getSubjectsOfAddress(addressClusterItem.getIdentifier()))
+
+                                    subjects += subjectView.getNameOrDenomination() + '\n';
+
+                                boolean hasSubjects = !subjects.isEmpty();
+
+                                if (hasSubjects)
+
+                                    subjectTextView.setText(subjects);
+
+                                boolean hasStreet = addressClusterItem.getDenomination() != null && !addressClusterItem.getDenomination().isEmpty();
+
+                                if (hasStreet)
+
+                                    streetTextView.setText(addressClusterItem.getDenomination());
+
+                                boolean hasNumber = addressClusterItem.getNumber() != null && !addressClusterItem.getNumber().isEmpty();
+
+                                if (hasNumber)
+
+                                    numberTextView.setText(", Nº " + addressClusterItem.getNumber());
+
+                                boolean hasDistrict = addressClusterItem.getDistrict() != null && !addressClusterItem.getDistrict().isEmpty();
+
+                                if (hasDistrict)
+
+                                    districtTextView.setText(addressClusterItem.getDistrict());
+
+                                boolean hasCity = addressClusterItem.getCity() != null && !addressClusterItem.getCity().isEmpty();
+
+                                if (hasCity)
+
+                                    cityTextView.setText(addressClusterItem.getCity());
+
+                            }
+
+                            return v;
+
+                        }
+                    }
+            );
+
+        }
+
+        return clusterManager;
+
+    }
+
 
     public void onMapReady(GoogleMap googleMap) {
+
 
         setGoogleMap(googleMap);
 
@@ -440,107 +573,22 @@ public class MapActivity extends FragmentActivity
 
         getGoogleMap().getUiSettings().setMyLocationButtonEnabled(false);
 
-        DisplayMetrics metrics = new DisplayMetrics();
+        getGoogleMap().setInfoWindowAdapter(getClusterManager().getMarkerManager());
 
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        getGoogleMap().setOnCameraIdleListener(getClusterManager());
 
-        clusterManager = new ClusterManager<>(this, getGoogleMap());
+        getGoogleMap().setOnMarkerClickListener(getClusterManager());
 
-        clusterManager.setAlgorithm(new NonHierarchicalViewBasedAlgorithm<AddressClusterItem>(
-                metrics.widthPixels, metrics.heightPixels));
+        getGoogleMap().setOnInfoWindowClickListener(getClusterManager());
 
-        clusterManager.setRenderer(new AddressClusterRenderer(
-                getApplicationContext(),
-                getGoogleMap(),
-                clusterManager));
+        getClusterManager().setOnClusterClickListener(this);
 
-        clusterManager.getMarkerCollection().setOnInfoWindowAdapter(
-                new GoogleMap.InfoWindowAdapter(){
-                    public View getInfoWindow(Marker marker) {
-                        return null;
-                    }
-                    public View getInfoContents(Marker marker) {
+        getClusterManager().setOnClusterInfoWindowClickListener(this);
 
-                        View v = getLayoutInflater().inflate(R.layout.activity_map_windowinfo, null);
+        getClusterManager().setOnClusterItemClickListener(this);
 
-                        TextView subjectTextView = v.findViewById(R.id.marker_subject_textview);
+        getClusterManager().setOnClusterItemInfoWindowClickListener(this);
 
-                        TextView streetTextView = v.findViewById(R.id.marker_denomination_textview);
-
-                        TextView numberTextView = v.findViewById(R.id.marker_number_textview);
-
-                        TextView districtTextView = v.findViewById(R.id.marker_district_textview);
-
-                        TextView cityTextView = v.findViewById(R.id.marker_city_textview);
-
-                        if(addressClusterItem!=null){
-
-                            String subjects = "";
-
-                            for (SubjectView subjectView: addressRepository.
-                                    getDao().getSubjectsOfAddress(addressClusterItem.getIdentifier())) {
-
-                                subjects += subjectView.getNameOrDenomination() + '\n';
-
-                            }
-
-                            boolean hasSubjects = !subjects.isEmpty();
-
-                            if (hasSubjects)
-
-                                subjectTextView.setText(subjects);
-
-                            //Street
-                            boolean hasStreet = addressClusterItem.getDenomination() != null && !addressClusterItem.getDenomination().isEmpty();
-
-                            if (hasStreet)
-
-                                streetTextView.setText(addressClusterItem.getDenomination());
-
-                            //Number
-                            boolean hasNumber = addressClusterItem.getNumber() != null && !addressClusterItem.getNumber().isEmpty();
-
-                            if (hasNumber)
-
-                                numberTextView.setText(", Nº " + addressClusterItem.getNumber());
-
-                            //District
-                            boolean hasDistrict = addressClusterItem.getDistrict() != null && !addressClusterItem.getDistrict().isEmpty();
-
-                            if (hasDistrict)
-
-                                districtTextView.setText(addressClusterItem.getDistrict());
-
-                            //City
-                            boolean hasCity = addressClusterItem.getCity() != null && !addressClusterItem.getCity().isEmpty();
-
-                            if (hasCity)
-
-                                cityTextView.setText(addressClusterItem.getCity());
-
-                        }
-
-                        return v;
-
-                    }
-                }
-        );
-
-        getGoogleMap().setInfoWindowAdapter(clusterManager.getMarkerManager());
-
-        getGoogleMap().setOnCameraIdleListener(clusterManager);
-
-        getGoogleMap().setOnMarkerClickListener(clusterManager);
-
-        getGoogleMap().setOnInfoWindowClickListener(clusterManager);
-
-        clusterManager.setOnClusterClickListener(this);
-
-        clusterManager.setOnClusterInfoWindowClickListener(this);
-
-        clusterManager.setOnClusterItemClickListener(this);
-
-        clusterManager.setOnClusterItemInfoWindowClickListener(this);
 
         addressRepository = ViewModelProviders.of(this).get(AddressRepository.class);
 
@@ -548,7 +596,7 @@ public class MapActivity extends FragmentActivity
 
             public void onChanged(@Nullable List<AddressModel> addresses) {
 
-                clusterManager.clearItems();
+                getClusterManager().clearItems();
 
                 if (addresses!=null && !addresses.isEmpty()){
 
@@ -572,7 +620,7 @@ public class MapActivity extends FragmentActivity
 
                         addressClusterItem.setPosition(new LatLng(address.getLatitude(), address.getLongitude()));
 
-                        clusterManager.addItem(addressClusterItem);
+                        getClusterManager().addItem(addressClusterItem);
 
                     }
 
@@ -596,8 +644,6 @@ public class MapActivity extends FragmentActivity
 
 
     public boolean onClusterItemClick(AddressClusterItem addressClusterItem) {
-
-        this.addressClusterItem = addressClusterItem;
 
         return false;
 

@@ -2,14 +2,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/menu_map"
+    android:id="@+id/activity_map_fragment"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MapActivity">
 
     <com.arlib.floatingsearchview.FloatingSearchView
-        android:id="@+id/floating_search_view"
+        android:id="@+id/activity_map_fsv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:floatingSearch_searchBarMarginLeft="5dp"
@@ -21,5 +21,14 @@
         app:floatingSearch_leftActionMode="showHamburger"
         app:floatingSearch_menu="@menu/menu_map_search"
         app:floatingSearch_close_search_on_keyboard_dismiss="true"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/activity_map_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/icon_add_24"
+        app:backgroundTint="@color/colorGreyDark"
+        android:layout_margin="16dp" />
 
 </fragment>

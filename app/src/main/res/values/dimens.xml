@@ -14,6 +14,10 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="content_padding_normal">10dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
-
+    <!-- SLIDING -->
+    <dimen name="map_height">125dp</dimen>
+    <dimen name="paralax_offset">250dp</dimen>
+    <dimen name="divider_height">5dp</dimen>
 </resources>

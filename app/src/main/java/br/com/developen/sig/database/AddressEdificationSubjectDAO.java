@@ -6,6 +6,8 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+import java.util.List;
+
 @Dao
 public interface AddressEdificationSubjectDAO {
 
@@ -37,19 +39,23 @@ public interface AddressEdificationSubjectDAO {
             " A.postalCode AS 'address_postalCode', " +
             " A.latitude AS 'address_latitude', " +
             " A.longitude AS 'address_longitude', " +
-            " C.identifier AS 'city_identifier', " +
-            " C.denomination AS 'city_denomination', " +
+            " C.identifier AS 'address_city_identifier', " +
+            " C.denomination AS 'address_city_denomination', " +
+            " S.identifier AS 'address_city_state_identifier', " +
+            " S.denomination AS 'address_city_state_denomination', " +
+            " S.acronym AS 'address_city_state_acronym', " +
             " AE.edification AS 'edification', " +
             " SV.identifier AS 'subject_identifier', " +
-            " SV.nameOrDenomination AS 'subject_nameOrDenomination' " +
+            " SV.nameOrDenomination AS 'subject_nameOrDenomination', " +
+            " SV.type AS 'subject_type' " +
             "FROM AddressEdificationSubject AES " +
             "INNER JOIN AddressEdification AE ON AE.address = AES.address AND AE.edification = AES.edification " +
             "INNER JOIN Address A ON A.identifier = AE.address " +
             "INNER JOIN City C ON C.identifier = A.city " +
             "INNER JOIN State S ON S.identifier = C.state " +
-            "INNER JOIN Country Co ON Co.identifier = S.identifier " +
+            "INNER JOIN Country Co ON Co.identifier = S.country " +
             "INNER JOIN SubjectView SV ON SV.identifier = AES.subject " +
             "WHERE SV.nameOrDenomination LIKE :nameOrDenomination")
-    AddressEdificationSubjectModel findBySubjectNameOrDenomination(String nameOrDenomination);
+    List<AddressEdificationSubjectModel> findBySubjectNameOrDenomination(String nameOrDenomination);
 
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <br.com.developen.sig.widget.slide.SlidingUpPanelLayout
+        android:id="@+id/slidingLayout"
+        android:gravity="bottom"
+        app:shadowHeight="3dp"
+        app:paralaxOffset="@dimen/paralax_offset"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <FrameLayout
+            android:gravity="top"
+            android:id="@+id/mapContainer"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <!--<RelativeLayout
+                android:id="@+id/mapContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"> -->
+
+                <include
+                    layout="@layout/activity_address_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            <!--</RelativeLayout> -->
+
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/slidingContainer"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <br.com.developen.sig.widget.slide.LockableRecyclerView
+                android:id="@android:id/list"
+                android:cacheColorHint="@android:color/white"
+                android:drawSelectorOnTop="true"
+                android:dividerHeight="@dimen/divider_height"
+                android:divider="@android:color/darker_gray"
+                android:background="@android:color/transparent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/transparentView"
+                android:smoothScrollbar="false"/>
+
+        </RelativeLayout>
+
+    </br.com.developen.sig.widget.slide.SlidingUpPanelLayout>
+
+</RelativeLayout>

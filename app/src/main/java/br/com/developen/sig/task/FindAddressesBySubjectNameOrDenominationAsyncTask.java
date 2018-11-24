@@ -36,7 +36,7 @@ public class FindAddressesBySubjectNameOrDenominationAsyncTask<
 
             return database.
                     addressEdificationSubjectDAO().
-                    findBySubjectNameOrDenomination( '%' + parameters[0].toUpperCase() + '%');
+                    findBySubjectNameOrDenomination( "%" + parameters[0].toUpperCase() + "%");
 
         } catch (Exception e) {
 

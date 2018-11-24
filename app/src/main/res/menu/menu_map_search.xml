@@ -6,7 +6,7 @@
         android:id="@+id/menu_map_search_localization"
         android:orderInCategory="100"
         android:title="@string/location"
-        android:icon="@drawable/gps_24"
+        android:icon="@drawable/icon_gps_24"
         android:iconTint="@color/colorAccent"
         app:showAsAction="ifRoom" />
 </menu>
