@@ -1,70 +1,32 @@
 package br.com.developen.sig;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.ListView;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
-import br.com.developen.sig.widget.slide.LockableRecyclerView;
-import br.com.developen.sig.widget.slide.SlidingUpPanelLayout;
+import br.com.developen.sig.task.UpdateAddressLocationAsynTask;
+import br.com.developen.sig.util.Messaging;
 
-public class AddressActivity
-        extends FragmentActivity
-        implements OnMapReadyCallback,
-        SlidingUpPanelLayout.PanelSlideListener {
+public class AddressActivity extends AppCompatActivity
+        implements LocationFragment.LocationListener, UpdateAddressLocationAsynTask.Listener {
 
 
-    private static final int FINE_LOCATION_PERMISSION_REQUEST = 1;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    private static final LatLng MARAVILHA = new LatLng(-26.774482, -53.169744);
-
-
-    private LatLng location = MARAVILHA;
-
-    private Marker marker;
-
-    private GoogleMap googleMap;
-
-    private SupportMapFragment mapFragment;
-
-    private LocationManager locationManager;
-
-    private SlidingUpPanelLayout slidingUpPanelLayout;
-
-    private LocationListener locationListener = new LocationListener() {
-
-        public void onLocationChanged(Location location) {
-
-            moveToLocation(location);
-
-        }
-
-        public void onStatusChanged(String s, int i, Bundle bundle) {}
-
-        public void onProviderEnabled(String s) {}
-
-        public void onProviderDisabled(String s) {}
-
-    };
+    private ViewPager mViewPager;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,278 +35,136 @@ public class AddressActivity
 
         setContentView(R.layout.activity_address);
 
-        LockableRecyclerView mListView = findViewById(android.R.id.list);
+        Toolbar toolbar = findViewById(R.id.activity_address_toolbar);
 
-        mListView.setOverScrollMode(ListView.OVER_SCROLL_NEVER);
+        setSupportActionBar(toolbar);
 
-        mapFragment = (SupportMapFragment) getSupportFragmentManager().
-                findFragmentById(R.id.activity_address_fragment);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        mapFragment.getMapAsync(this);
+        mViewPager = findViewById(R.id.activity_address_container);
 
-        slidingUpPanelLayout = findViewById(R.id.slidingLayout);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        slidingUpPanelLayout.setEnableDragViewTouchEvents(true);
+        TabLayout tabLayout = findViewById(R.id.activity_address_tabs);
 
-        int mapHeight = getResources().getDimensionPixelSize(R.dimen.map_height);
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        slidingUpPanelLayout.setPanelHeight(mapHeight);
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        slidingUpPanelLayout.setScrollableView(mListView, mapHeight);
+    }
 
-        slidingUpPanelLayout.setPanelSlideListener(this);
 
-        slidingUpPanelLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-            public void onGlobalLayout() {
+        getMenuInflater().inflate(R.menu.menu_add, menu);
 
-                slidingUpPanelLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+        return true;
 
-                slidingUpPanelLayout.onPanelDragged(0);
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings)
+
+            return true;
+
+        return super.onOptionsItemSelected(item);
+
+    }
+
+
+    public void onPointerCaptureChanged(boolean hasCapture) {}
+
+
+    public void onLocationChanged(LatLng latLng) {
+
+        new UpdateAddressLocationAsynTask<>(this).execute(
+                getIntent().getIntExtra(MapActivity.MODIFIED_ADDRESS_IDENTIFIER,0),
+                latLng.latitude,
+                latLng.longitude);
+
+/*
+        this.location = latLng;
+
+        Double[] lat_long = new Double[] {this.location.latitude, this.location.longitude};
+
+        new ReverseGeocodingAsyncTask(getBaseContext()).execute(lat_long);
+*/
+
+    }
+
+
+    public void onUpdateAddressLocationSuccess() {}
+
+
+    public void onUpdateAddressLocationFailure(Messaging messaging) {}
+
+
+    public static class PlaceholderFragment extends Fragment {
+
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public PlaceholderFragment() {}
+
+        public static PlaceholderFragment newInstance(int sectionNumber) {
+            PlaceholderFragment fragment = new PlaceholderFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_address, container, false);
+            TextView textView = rootView.findViewById(R.id.section_label);
+            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            return rootView;
+        }
+
+    }
+
+
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+
+            super(fm);
+
+        }
+
+        public Fragment getItem(int position) {
+
+            Fragment f;
+
+            switch (position){
+
+                case 0:
+
+                    f = LocationFragment.newInstance(AddressActivity.this,
+                            getIntent().getIntExtra(MapActivity.MODIFIED_ADDRESS_IDENTIFIER, 0));
+
+                    break;
+
+                default:
+
+                    f = PlaceholderFragment.newInstance(position + 1);
 
             }
 
-        });
-
-        setLocationManager((LocationManager) getSystemService(Context.LOCATION_SERVICE));
-
-
-    }
-
-
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-
-        switch (requestCode) {
-
-            case FINE_LOCATION_PERMISSION_REQUEST: {
-
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    goToMyLocation();
-
-                }
-
-            }
+            return f;
 
         }
 
-    }
+        public int getCount() {
 
-
-    public void onMapReady(GoogleMap googleMap) {
-
-        setGoogleMap(googleMap);
-
-        getGoogleMap().setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-
-        getGoogleMap().getUiSettings().setCompassEnabled(false);
-
-        getGoogleMap().getUiSettings().setZoomControlsEnabled(true);
-
-        getGoogleMap().getUiSettings().setMapToolbarEnabled(false);
-
-        getGoogleMap().getUiSettings().setMyLocationButtonEnabled(false);
-
-        getGoogleMap().setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
-            public void onMarkerDragStart(Marker marker) {}
-            public void onMarkerDrag(Marker marker) {}
-            public void onMarkerDragEnd(Marker marker) {
-
-                moveToLocation(marker.getPosition());
-
-            }
-        });
-
-        getGoogleMap().setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            public void onMapClick(LatLng latLng) {
-
-                moveToLocation(latLng);
-
-            }
-        });
-
-        goToMyLocation();
-
-    }
-
-
-    public void goToMyLocation() {
-
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    FINE_LOCATION_PERMISSION_REQUEST);
-
-        } else {
-
-            getLocationManager().requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                    10, 5000, locationListener);
-
-            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-            moveToLocation(location);
+            return 3;
 
         }
-
-    }
-
-
-    public GoogleMap getGoogleMap() {
-
-        return googleMap;
-
-    }
-
-
-    public void setGoogleMap(GoogleMap googleMap) {
-
-        this.googleMap = googleMap;
-
-    }
-
-
-    public void onPanelSlide(View panel, float slideOffset) {
-
-    }
-
-
-    public void onPanelCollapsed(View panel) {
-
-        expandMap();
-
-    }
-
-
-    public void onPanelExpanded(View panel) {
-
-        collapseMap();
-
-    }
-
-
-    public void onPanelAnchored(View panel) {}
-
-
-    private void collapseMap() {
-
-        if (getGoogleMap() != null){
-
-            CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .target(new LatLng(getLocation().latitude+0.01, getLocation().longitude))
-                    .zoom(14f)
-                    .bearing(0)
-                    .build();
-
-            getGoogleMap().animateCamera(
-                    CameraUpdateFactory.
-                            newCameraPosition(cameraPosition));
-
-        }
-
-    }
-
-
-    private void expandMap() {
-
-        if (getGoogleMap() != null) {
-
-            getGoogleMap().animateCamera(
-                    CameraUpdateFactory.
-                            newLatLngZoom(getLocation(), 18f), 1000, null);
-
-        }
-
-    }
-
-
-    private void moveToLocation(Location location) {
-
-        LatLng latLng = location == null ? MARAVILHA :
-                new LatLng(location.getLatitude(),
-                        location.getLongitude());
-
-        moveToLocation(latLng);
-
-    }
-
-
-    private void moveToLocation(LatLng latLng) {
-
-        moveToLocation(latLng, true);
-
-    }
-
-
-    private void moveToLocation(LatLng latLng, final boolean moveCamera) {
-
-        setLocation(latLng);
-
-        if (!getMarker().getPosition().equals(getLocation()))
-
-            getMarker().setPosition(getLocation());
-
-        double latitude = slidingUpPanelLayout.isExpanded() ? getLocation().latitude + 0.01 : getLocation().latitude;
-
-        double longitude = getLocation().longitude;
-
-        float zoom = slidingUpPanelLayout.isExpanded() ? 14f : 18f;
-
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(new LatLng(latitude, longitude))
-                .zoom(zoom)
-                .bearing(0)
-                .build();
-
-        getGoogleMap().animateCamera(
-                CameraUpdateFactory.
-                        newCameraPosition(cameraPosition));
-
-    }
-
-
-    public Marker getMarker(){
-
-        if (marker==null){
-
-            marker = getGoogleMap().addMarker(
-                    new MarkerOptions().
-                            position(getLocation()).
-                            draggable(true));
-
-        }
-
-        return marker;
-
-    }
-
-
-    public LocationManager getLocationManager() {
-
-        return locationManager;
-
-    }
-
-
-    public void setLocationManager(LocationManager locationManager) {
-
-        this.locationManager = locationManager;
-
-    }
-
-
-    public LatLng getLocation() {
-
-        return location;
-
-    }
-
-
-    public void setLocation(LatLng location) {
-
-        this.location = location;
 
     }
 

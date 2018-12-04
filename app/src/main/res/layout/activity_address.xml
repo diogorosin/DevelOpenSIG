@@ -1,58 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="br.com.developen.sig.AddressActivity">
 
-    <br.com.developen.sig.widget.slide.SlidingUpPanelLayout
-        android:id="@+id/slidingLayout"
-        android:gravity="bottom"
-        app:shadowHeight="3dp"
-        app:paralaxOffset="@dimen/paralax_offset"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/activity_add_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlackMedium"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:paddingTop="@dimen/appbar_padding_top">
 
-        <FrameLayout
-            android:gravity="top"
-            android:id="@+id/mapContainer"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/activity_address_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:background="@color/colorBlackMedium"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="@string/title_activity_add">
 
-            <!--<RelativeLayout
-                android:id="@+id/mapContainer"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"> -->
+        </android.support.v7.widget.Toolbar>
 
-                <include
-                    layout="@layout/activity_address_fragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/activity_address_tabs"
+            android:background="@color/colorBlackMedium"
+            app:tabIndicatorColor="@color/colorGreyDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorHeight="4dp">
 
-            <!--</RelativeLayout> -->
+            <android.support.design.widget.TabItem
+                android:id="@+id/activity_address_tabitem_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/location" />
 
+            <android.support.design.widget.TabItem
+                android:id="@+id/activity_address_tabitem_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/address" />
 
-        </FrameLayout>
+            <android.support.design.widget.TabItem
+                android:id="@+id/activity_address_tabitem_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dwellers" />
 
-        <RelativeLayout
-            android:id="@+id/slidingContainer"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+          <!--  <android.support.design.widget.TabItem
+                android:id="@+id/activity_add_tabitem_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dweller" /> -->
 
-            <br.com.developen.sig.widget.slide.LockableRecyclerView
-                android:id="@android:id/list"
-                android:cacheColorHint="@android:color/white"
-                android:drawSelectorOnTop="true"
-                android:dividerHeight="@dimen/divider_height"
-                android:divider="@android:color/darker_gray"
-                android:background="@android:color/transparent"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_below="@id/transparentView"
-                android:smoothScrollbar="false"/>
+        </android.support.design.widget.TabLayout>
 
-        </RelativeLayout>
+    </android.support.design.widget.AppBarLayout>
 
-    </br.com.developen.sig.widget.slide.SlidingUpPanelLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/activity_address_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-</RelativeLayout>
+    <!--<android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email" /> -->
+
+</android.support.design.widget.CoordinatorLayout>

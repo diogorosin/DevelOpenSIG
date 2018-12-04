@@ -9,9 +9,9 @@ public class AddressBean implements Serializable {
 	private Integer identifier;
 
 	private String denomination;
-	
+
 	private String number;
-	
+
 	private String reference;
 
 	private String district;
@@ -25,21 +25,21 @@ public class AddressBean implements Serializable {
 	private Double longitude;
 
 	public Integer getIdentifier() {
-		
+
 		return identifier;
-		
+
 	}
 
 	public void setIdentifier(Integer identifier) {
-		
+
 		this.identifier = identifier;
-		
+
 	}
 
 	public String getDenomination() {
-		
+
 		return denomination;
-		
+
 	}
 
 	public void setDenomination(String denomination) {

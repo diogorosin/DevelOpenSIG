@@ -18,6 +18,6 @@
 
     <!-- SLIDING -->
     <dimen name="map_height">125dp</dimen>
-    <dimen name="paralax_offset">250dp</dimen>
+    <dimen name="paralax_offset">125dp</dimen>
     <dimen name="divider_height">5dp</dimen>
 </resources>

@@ -32,6 +32,7 @@ dependencies {
     implementation 'android.arch.lifecycle:livedata:1.1.0'
     implementation 'android.arch.lifecycle:extensions:1.1.0'
     implementation 'android.arch.persistence.room:runtime:1.0.0'
+    implementation 'com.android.support:support-v4:26.1.0'
     annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
     //JERSEY --- NUNCA ATUALIZAR AS VERSOES DAS BIBLIOTECAS ABAIXO
@@ -55,8 +56,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
     //Search
     implementation 'com.github.arimorty:floatingsearchview:2.1.1'
-    //Sliding
-    implementation 'com.sothree.slidinguppanel:library:3.4.0'
 }
 
 configurations {

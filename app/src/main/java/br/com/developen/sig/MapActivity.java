@@ -1,16 +1,16 @@
+// https://developer.android.com/training/location/retrieve-current
+// https://developer.android.com/training/location/receive-location-updates
+
 package br.com.developen.sig;
 
 import android.Manifest;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -50,6 +50,7 @@ import br.com.developen.sig.database.AddressEdificationSubjectModel;
 import br.com.developen.sig.database.AddressModel;
 import br.com.developen.sig.database.SubjectView;
 import br.com.developen.sig.repository.AddressRepository;
+import br.com.developen.sig.task.CreateAddressAsynTask;
 import br.com.developen.sig.task.FindAddressesBySubjectNameOrDenominationAsyncTask;
 import br.com.developen.sig.util.Constants;
 import br.com.developen.sig.util.IconUtils;
@@ -62,6 +63,8 @@ import br.com.developen.sig.widget.AddressEdificationSubjectSuggestions;
 public class MapActivity
         extends FragmentActivity
         implements OnMapReadyCallback,
+        GoogleMap.OnMyLocationChangeListener,
+        CreateAddressAsynTask.Listener,
         NavigationView.OnNavigationItemSelectedListener,
         FindAddressesBySubjectNameOrDenominationAsyncTask.Listener,
         ClusterManager.OnClusterClickListener<AddressClusterItem>,
@@ -70,16 +73,18 @@ public class MapActivity
         ClusterManager.OnClusterItemInfoWindowClickListener<AddressClusterItem>{
 
 
-    private static final int FINE_LOCATION_PERMISSION_REQUEST = 1;
+    public static final int MY_LOCATION_PERMISSION_REQUEST = 1;
+
+    public static final String MODIFIED_ADDRESS_IDENTIFIER = "ARG_MODIFIED_ADDRESS_IDENTIFIER";
 
 
     private ClusterManager<AddressClusterItem> clusterManager;
 
+    private Location lastKnowLocation;
+
     private GoogleMap googleMap;
 
     private FloatingSearchView searchView;
-
-    private LocationManager locationManager;
 
     private SharedPreferences preferences;
 
@@ -91,19 +96,6 @@ public class MapActivity
     private MenuItem menuItemTerrain;
 
     private MenuItem menuItemSatellite;
-
-
-    private LocationListener locationListener = new LocationListener() {
-
-        public void onLocationChanged(Location location) {}
-
-        public void onStatusChanged(String s, int i, Bundle bundle) {}
-
-        public void onProviderEnabled(String s) {}
-
-        public void onProviderDisabled(String s) {}
-
-    };
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -268,16 +260,17 @@ public class MapActivity
         FloatingActionButton fab = findViewById(R.id.activity_map_fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
+
             public void onClick(View view) {
 
-                Intent newAddressIntent = new Intent(MapActivity.this, AddressActivity.class);
+                if (getLastKnowLocation() != null)
 
-                startActivity(newAddressIntent);
+                    new CreateAddressAsynTask<>(MapActivity.this).execute(
+                            getLastKnowLocation().getLatitude(), getLastKnowLocation().getLongitude());
 
             }
-        });
 
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        });
 
     }
 
@@ -357,16 +350,6 @@ public class MapActivity
 
                 break;
 
-            case R.id.menu_settings:
-
-                drawer.closeDrawers();
-
-                //Intent saleIntent = new Intent(MainActivity.this, CatalogActivity.class);
-
-                //startActivity(saleIntent);
-
-                break;
-
             case R.id.menu_logout:
 
                 SharedPreferences.Editor editor = preferences.edit();
@@ -417,15 +400,13 @@ public class MapActivity
 
         switch (requestCode) {
 
-            case FINE_LOCATION_PERMISSION_REQUEST: {
+            case MY_LOCATION_PERMISSION_REQUEST:
 
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
 
-                    goToMyLocation();
+                    getGoogleMap().setMyLocationEnabled(true);
 
-                }
-
-            }
+                break;
 
         }
 
@@ -434,40 +415,20 @@ public class MapActivity
 
     public void goToMyLocation() {
 
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
+        if (getLastKnowLocation() != null) {
 
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    FINE_LOCATION_PERMISSION_REQUEST);
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(new LatLng(getLastKnowLocation().getLatitude(), getLastKnowLocation().getLongitude()))
+                    .zoom(18f)
+                    .bearing(0)
+                    .build();
 
-        } else {
-
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                    10, 5000, locationListener);
-
-            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-            if (location!=null) {
-
-                CameraPosition cameraPosition = new CameraPosition.Builder()
-                        .target(new LatLng(location.getLatitude(), location.getLongitude()))
-                        .zoom(13)
-                        .bearing(0)
-                        .build();
-
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
-            }
-
-            if (!googleMap.isMyLocationEnabled())
-
-                googleMap.setMyLocationEnabled(true);
+            getGoogleMap().animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         }
 
     }
+
 
     public ClusterManager getClusterManager(){
 
@@ -573,13 +534,18 @@ public class MapActivity
 
         getGoogleMap().getUiSettings().setMyLocationButtonEnabled(false);
 
+        getGoogleMap().setMinZoomPreference(12f);
+
         getGoogleMap().setInfoWindowAdapter(getClusterManager().getMarkerManager());
+
+        getGoogleMap().setOnMyLocationChangeListener(this);
 
         getGoogleMap().setOnCameraIdleListener(getClusterManager());
 
         getGoogleMap().setOnMarkerClickListener(getClusterManager());
 
         getGoogleMap().setOnInfoWindowClickListener(getClusterManager());
+
 
         getClusterManager().setOnClusterClickListener(this);
 
@@ -588,7 +554,6 @@ public class MapActivity
         getClusterManager().setOnClusterItemClickListener(this);
 
         getClusterManager().setOnClusterItemInfoWindowClickListener(this);
-
 
         addressRepository = ViewModelProviders.of(this).get(AddressRepository.class);
 
@@ -630,6 +595,18 @@ public class MapActivity
 
         });
 
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_LOCATION_PERMISSION_REQUEST);
+
+        } else
+
+            getGoogleMap().setMyLocationEnabled(true);
+
     }
 
 
@@ -651,6 +628,50 @@ public class MapActivity
 
 
     public void onClusterItemInfoWindowClick(AddressClusterItem addressClusterItem) {}
+
+
+    public void onCreateAddressSuccess(Integer identifier) {
+
+        Intent addIntent = new Intent(MapActivity.this, AddressActivity.class);
+
+        addIntent.putExtra(MODIFIED_ADDRESS_IDENTIFIER, identifier);
+
+        startActivity(addIntent);
+
+    }
+
+
+    public void onCreateAddressFailure(Messaging messaging) {}
+
+
+    public void onMyLocationChange(Location location) {
+
+        if (getLastKnowLocation()==null) {
+
+            getGoogleMap().animateCamera(
+                    CameraUpdateFactory.
+                            newLatLngZoom(new LatLng(location.getLatitude(),
+                                    location.getLongitude()),15f));
+
+        }
+
+        setLastKnowLocation(location);
+
+    }
+
+
+    public Location getLastKnowLocation() {
+
+        return lastKnowLocation;
+
+    }
+
+
+    public void setLastKnowLocation(Location lastKnowLocation) {
+
+        this.lastKnowLocation = lastKnowLocation;
+
+    }
 
 
 }
