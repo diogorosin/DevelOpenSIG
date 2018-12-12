@@ -23,6 +23,14 @@
     <string name="edification">Edificação</string>
     <string name="dwellers">Moradores</string>
     <string name="location">Localização</string>
+    <string name="thoroughfare">Logradouro</string>
+    <string name="number">Número</string>
+    <string name="district">Bairro</string>
+    <string name="complement">Complemento</string>
+    <string name="city">Município</string>
+    <string name="state">Estado</string>
+    <string name="country">País</string>
+
 
 
     <!-- AccountActivity -->
@@ -52,7 +60,7 @@
 
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_address">AddressActivity</string>
-    <string name="title_activity_add">Novo Endereço</string>
+    <string name="title_activity_add">Endereço</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
     <!-- TODO: Remove or change this placeholder text -->

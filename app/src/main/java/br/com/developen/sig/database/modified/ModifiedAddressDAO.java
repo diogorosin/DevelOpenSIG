@@ -45,7 +45,10 @@ public interface ModifiedAddressDAO {
             " C.denomination AS 'city_denomination', " +
             " S.identifier AS 'city_state_identifier', " +
             " S.denomination AS 'city_state_denomination', " +
-            " S.acronym AS 'city_state_acronym' " +
+            " S.acronym AS 'city_state_acronym', " +
+            " Co.identifier AS 'city_state_country_identifier', " +
+            " Co.denomination AS 'city_state_country_denomination', " +
+            " Co.acronym AS 'city_state_country_acronym' " +
             "FROM ModifiedAddress MA " +
             "LEFT OUTER JOIN City C ON C.identifier = MA.city " +
             "LEFT OUTER JOIN State S ON S.identifier = C.state " +

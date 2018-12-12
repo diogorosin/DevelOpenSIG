@@ -86,14 +86,6 @@ public class AddressActivity extends AppCompatActivity
                 latLng.latitude,
                 latLng.longitude);
 
-/*
-        this.location = latLng;
-
-        Double[] lat_long = new Double[] {this.location.latitude, this.location.longitude};
-
-        new ReverseGeocodingAsyncTask(getBaseContext()).execute(lat_long);
-*/
-
     }
 
 
@@ -103,7 +95,7 @@ public class AddressActivity extends AppCompatActivity
     public void onUpdateAddressLocationFailure(Messaging messaging) {}
 
 
-    public static class PlaceholderFragment extends Fragment {
+    /*public static class PlaceholderFragment extends Fragment {
 
         private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -126,7 +118,7 @@ public class AddressActivity extends AppCompatActivity
             return rootView;
         }
 
-    }
+    }*/
 
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -139,7 +131,7 @@ public class AddressActivity extends AppCompatActivity
 
         public Fragment getItem(int position) {
 
-            Fragment f;
+            Fragment f = null;
 
             switch (position){
 
@@ -150,9 +142,23 @@ public class AddressActivity extends AppCompatActivity
 
                     break;
 
-                default:
+                case 1:
 
-                    f = PlaceholderFragment.newInstance(position + 1);
+                    f = AddressFragment.newInstance(getIntent().
+                            getIntExtra(MapActivity.MODIFIED_ADDRESS_IDENTIFIER, 0));
+
+                    break;
+
+                case 2:
+
+                    f = EdificationFragment.newInstance(getIntent().
+                            getIntExtra(MapActivity.MODIFIED_ADDRESS_IDENTIFIER, 0));
+
+                    break;
+
+       /*         default:
+
+                    f = PlaceholderFragment.newInstance(position + 1); */
 
             }
 

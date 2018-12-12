@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import java.lang.ref.WeakReference;
 import java.util.Date;
 
+import br.com.developen.sig.database.modified.ModifiedAddressEdificationVO;
 import br.com.developen.sig.database.modified.ModifiedAddressVO;
 import br.com.developen.sig.exception.CannotInitializeDatabaseException;
 import br.com.developen.sig.exception.InternalException;
@@ -70,6 +71,14 @@ public class CreateAddressAsynTask<A extends Activity & CreateAddressAsynTask.Li
             Integer identifier = database.
                     modifiedAddressDAO().
                     create(modifiedAddressVO).intValue();
+
+            ModifiedAddressEdificationVO modifiedAddressEdificationVO = new ModifiedAddressEdificationVO();
+
+            modifiedAddressEdificationVO.setModifiedAddress(identifier);
+
+            modifiedAddressEdificationVO.setEdification("RESID00001");
+
+            database.modifiedAddressEdificationDAO().create(modifiedAddressEdificationVO);
 
             database.setTransactionSuccessful();
 

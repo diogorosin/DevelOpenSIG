@@ -40,7 +40,6 @@ public class ModifiedAddressVO {
     @ColumnInfo(name="modifiedBy")
     private Integer modifiedBy;
 
-
     @ColumnInfo(name="address")
     private Integer address;
 

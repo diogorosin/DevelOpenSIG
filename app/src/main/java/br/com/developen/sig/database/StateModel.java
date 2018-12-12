@@ -1,6 +1,8 @@
 package br.com.developen.sig.database;
 
 
+import android.arch.persistence.room.Embedded;
+
 import java.util.Objects;
 
 public class StateModel {
@@ -10,6 +12,9 @@ public class StateModel {
     private String denomination;
 
     private String acronym;
+
+    @Embedded(prefix = "country_")
+    private CountryModel country;
 
     public Integer getIdentifier() {
 
@@ -44,6 +49,18 @@ public class StateModel {
     public void setAcronym(String acronym) {
 
         this.acronym = acronym;
+
+    }
+
+    public CountryModel getCountry() {
+
+        return country;
+
+    }
+
+    public void setCountry(CountryModel country) {
+
+        this.country = country;
 
     }
 
