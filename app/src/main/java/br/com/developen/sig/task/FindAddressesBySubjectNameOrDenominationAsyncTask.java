@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-import br.com.developen.sig.database.AddressEdificationSubjectModel;
+import br.com.developen.sig.database.AddressEdificationDwellerModel;
 import br.com.developen.sig.exception.CannotLoadPlacesException;
 import br.com.developen.sig.util.DB;
 import br.com.developen.sig.util.Messaging;
@@ -57,7 +57,7 @@ public class FindAddressesBySubjectNameOrDenominationAsyncTask<
 
                 if (callResult instanceof List) {
 
-                    activity.onSuccess((List<AddressEdificationSubjectModel>) callResult);
+                    activity.onSuccess((List<AddressEdificationDwellerModel>) callResult);
 
                 } else {
 
@@ -77,7 +77,7 @@ public class FindAddressesBySubjectNameOrDenominationAsyncTask<
 
     public interface Listener {
 
-        void onSuccess(List<AddressEdificationSubjectModel> list);
+        void onSuccess(List<AddressEdificationDwellerModel> list);
 
         void onFailure(Messaging messaging);
 

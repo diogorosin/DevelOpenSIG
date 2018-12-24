@@ -46,7 +46,7 @@ import com.google.maps.android.clustering.algo.NonHierarchicalViewBasedAlgorithm
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.developen.sig.database.AddressEdificationSubjectModel;
+import br.com.developen.sig.database.AddressEdificationDwellerModel;
 import br.com.developen.sig.database.AddressModel;
 import br.com.developen.sig.database.SubjectView;
 import br.com.developen.sig.repository.AddressRepository;
@@ -57,7 +57,7 @@ import br.com.developen.sig.util.IconUtils;
 import br.com.developen.sig.util.Messaging;
 import br.com.developen.sig.widget.AddressClusterItem;
 import br.com.developen.sig.widget.AddressClusterRenderer;
-import br.com.developen.sig.widget.AddressEdificationSubjectSuggestions;
+import br.com.developen.sig.widget.AddressEdificationDwellerSuggestions;
 
 
 public class MapActivity
@@ -145,11 +145,11 @@ public class MapActivity
 
             public void onBindSuggestion(View suggestionView, ImageView leftIcon, TextView textView, SearchSuggestion item, int itemPosition) {
 
-                AddressEdificationSubjectSuggestions addressEdificationSubjectSuggestions = (AddressEdificationSubjectSuggestions) item;
+                AddressEdificationDwellerSuggestions addressEdificationDwellerSuggestions = (AddressEdificationDwellerSuggestions) item;
 
                 leftIcon.setImageDrawable(ResourcesCompat.getDrawable(getResources(), IconUtils.getListIconByType(
-                        addressEdificationSubjectSuggestions.
-                                getAddressEdificationSubject().
+                        addressEdificationDwellerSuggestions.
+                                getAddressEdificationDwellerModel().
                                 getSubject().
                                 getType()), null));
 
@@ -181,14 +181,16 @@ public class MapActivity
 
             public void onSuggestionClicked(final SearchSuggestion searchSuggestion) {
 
-                final AddressEdificationSubjectSuggestions suggestion = (AddressEdificationSubjectSuggestions) searchSuggestion;
+                final AddressEdificationDwellerSuggestions suggestion = (AddressEdificationDwellerSuggestions) searchSuggestion;
 
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(new LatLng(suggestion.
-                                getAddressEdificationSubject().
+                                getAddressEdificationDwellerModel().
+                                getAddressEdification().
                                 getAddress().
                                 getLatitude(), suggestion.
-                                getAddressEdificationSubject().
+                                getAddressEdificationDwellerModel().
+                                getAddressEdification().
                                 getAddress().
                                 getLongitude()))
                         .zoom(getGoogleMap().getMaxZoomLevel())
@@ -209,7 +211,8 @@ public class MapActivity
 
                                     if (marker.getTag() != null && addressClusterItem.
                                             getIdentifier().equals(suggestion.
-                                            getAddressEdificationSubject().
+                                            getAddressEdificationDwellerModel().
+                                            getAddressEdification().
                                             getAddress().
                                             getIdentifier())) {
 
@@ -231,7 +234,7 @@ public class MapActivity
 
                 searchView.clearSearchFocus();
 
-                searchView.setSearchText(((AddressEdificationSubjectSuggestions) searchSuggestion).getAddressEdificationSubject().getSubject().getNameOrDenomination());
+                searchView.setSearchText(((AddressEdificationDwellerSuggestions) searchSuggestion).getAddressEdificationDwellerModel().getSubject().getNameOrDenomination());
 
             }
 
@@ -275,13 +278,13 @@ public class MapActivity
     }
 
 
-    public void onSuccess(List<AddressEdificationSubjectModel> list) {
+    public void onSuccess(List<AddressEdificationDwellerModel> list) {
 
         List<SearchSuggestion> result = new ArrayList<>();
 
-        for (AddressEdificationSubjectModel addressEdificationSubjectModel : list)
+        for (AddressEdificationDwellerModel addressEdificationDwellerModel : list)
 
-            result.add(new AddressEdificationSubjectSuggestions(addressEdificationSubjectModel));
+            result.add(new AddressEdificationDwellerSuggestions(addressEdificationDwellerModel));
 
         searchView.swapSuggestions(result);
 

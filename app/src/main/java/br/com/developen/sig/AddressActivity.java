@@ -1,6 +1,8 @@
 package br.com.developen.sig;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,25 +10,35 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.ScaleAnimation;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import br.com.developen.sig.database.modified.ModifiedAddressEdificationModel;
 import br.com.developen.sig.task.UpdateAddressLocationAsynTask;
 import br.com.developen.sig.util.Messaging;
 
 public class AddressActivity extends AppCompatActivity
-        implements LocationFragment.LocationListener, UpdateAddressLocationAsynTask.Listener {
+        implements LocationFragment.LocationListener,
+        EdificationFragment.EdificationFragmentListener,
+        UpdateAddressLocationAsynTask.Listener {
 
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+//    int[] colorIntArray = {R.color.colorGreyDark,R.color.colorGreyDark,R.color.colorGreyDark};
 
-    private ViewPager mViewPager;
+//    int[] iconIntArray = {R.drawable.icon_add_24,R.drawable.icon_add_24,R.drawable.icon_add_24};
+
+    private SectionsPagerAdapter sectionsPagerAdapter;
+
+    private FloatingActionButton floatingActionButton;
+
+    private ViewPager viewPager;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +51,27 @@ public class AddressActivity extends AppCompatActivity
 
         setSupportActionBar(toolbar);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        mViewPager = findViewById(R.id.activity_address_container);
+        viewPager = findViewById(R.id.activity_address_container);
 
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        viewPager.setAdapter(sectionsPagerAdapter);
 
-        TabLayout tabLayout = findViewById(R.id.activity_address_tabs);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            public void onPageSelected(int position) {
 
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+                floatingActionButton.setVisibility(position==2?View.VISIBLE:View.GONE);
 
-        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+            }
+            public void onPageScrollStateChanged(int state) {}
+        });
+
+        final TabLayout tabLayout = findViewById(R.id.activity_address_tabs);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+
+        floatingActionButton = findViewById(R.id.activity_address_fab);
 
     }
 
@@ -95,30 +117,10 @@ public class AddressActivity extends AppCompatActivity
     public void onUpdateAddressLocationFailure(Messaging messaging) {}
 
 
-    /*public static class PlaceholderFragment extends Fragment {
+    public void onEdificationClicked(ModifiedAddressEdificationModel modifiedAddressEdificationModel) {}
 
-        private static final String ARG_SECTION_NUMBER = "section_number";
 
-        public PlaceholderFragment() {}
-
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_address, container, false);
-            TextView textView = rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
-
-    }*/
+    public void onEdificationLongClick(ModifiedAddressEdificationModel modifiedAddressEdificationModel) {}
 
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -156,10 +158,6 @@ public class AddressActivity extends AppCompatActivity
 
                     break;
 
-       /*         default:
-
-                    f = PlaceholderFragment.newInstance(position + 1); */
-
             }
 
             return f;
@@ -174,5 +172,44 @@ public class AddressActivity extends AppCompatActivity
 
     }
 
+    /*protected void animateFab(final int position) {
+
+        floatingActionButton.clearAnimation();
+
+        ScaleAnimation shrink =  new ScaleAnimation(1f, 0.2f, 1f, 0.2f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+
+        shrink.setDuration(150);
+
+        shrink.setInterpolator(new DecelerateInterpolator());
+
+        shrink.setAnimationListener(new Animation.AnimationListener() {
+
+            public void onAnimationStart(Animation animation) {}
+
+            public void onAnimationEnd(Animation animation) {
+
+                floatingActionButton.setBackgroundTintList(getResources().getColorStateList(colorIntArray[position]));
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+
+                    floatingActionButton.setImageDrawable(getResources().getDrawable(iconIntArray[position], null));
+
+                ScaleAnimation expand = new ScaleAnimation(0.2f, 1f, 0.2f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+
+                expand.setDuration(100);
+
+                expand.setInterpolator(new AccelerateInterpolator());
+
+                floatingActionButton.startAnimation(expand);
+
+            }
+
+            public void onAnimationRepeat(Animation animation) {}
+
+        });
+
+        floatingActionButton.startAnimation(shrink);
+
+    }*/
 
 }

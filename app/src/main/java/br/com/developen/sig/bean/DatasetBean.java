@@ -6,22 +6,22 @@ import java.util.List;
 public class DatasetBean {
 
 	private List<AgencyBean> agencies;
-	
+
 	private List<IndividualBean> individuals;
-	
+
 	private List<OrganizationBean> organizations;
-	
+
 	private List<CountryBean> countries;
-	
+
 	private List<StateBean> states;
-	
+
 	private List<CityBean> cities;
-	
+
 	private List<AddressBean> addresses;
 
 	private List<AddressEdificationBean> addressesEdifications;
 
-	private List<AddressEdificationSubjectBean> addressesEdificationsSubjects;
+	private List<AddressEdificationDwellerBean> addressesEdificationsDwellers;
 
 	public List<AgencyBean> getAgencies() {
 
@@ -66,15 +66,15 @@ public class DatasetBean {
 	}
 
 	public void setOrganizations(List<OrganizationBean> organizations) {
-		
+
 		this.organizations = organizations;
 
 	}
 
 	public List<CountryBean> getCountries() {
-		
+
 		if (countries == null)
-			
+
 			countries = new ArrayList<CountryBean>();
 
 		return countries;
@@ -94,7 +94,7 @@ public class DatasetBean {
 			states = new ArrayList<StateBean>();
 
 		return states;
-		
+
 	}
 
 	public void setStates(List<StateBean> states) {
@@ -110,7 +110,7 @@ public class DatasetBean {
 			cities = new ArrayList<CityBean>();
 
 		return cities;
-		
+
 	}
 
 	public void setCities(List<CityBean> cities) {
@@ -126,7 +126,7 @@ public class DatasetBean {
 			addresses = new ArrayList<AddressBean>();
 
 		return addresses;
-		
+
 	}
 
 	public void setAddresses(List<AddressBean> addresses) {
@@ -142,7 +142,7 @@ public class DatasetBean {
 			addressesEdifications = new ArrayList<AddressEdificationBean>();
 
 		return addressesEdifications;
-		
+
 	}
 
 	public void setAddressesEdifications(List<AddressEdificationBean> addressesEdifications) {
@@ -151,19 +151,19 @@ public class DatasetBean {
 
 	}
 
-	public List<AddressEdificationSubjectBean> getAddressesEdificationsSubjects() {
+	public List<AddressEdificationDwellerBean> getAddressesEdificationsDwellers() {
 
-		if (addressesEdificationsSubjects == null)
+		if (addressesEdificationsDwellers == null)
 
-			addressesEdificationsSubjects = new ArrayList<AddressEdificationSubjectBean>();
+			addressesEdificationsDwellers = new ArrayList<AddressEdificationDwellerBean>();
 
-		return addressesEdificationsSubjects;
+		return addressesEdificationsDwellers;
 
 	}
 
-	public void setAddressesEdificationsSubjects(List<AddressEdificationSubjectBean> addressesEdificationsSubjects) {
+	public void setAddressesEdificationsDwellers(List<AddressEdificationDwellerBean> addressesEdificationsDwellers) {
 
-		this.addressesEdificationsSubjects = addressesEdificationsSubjects;
+		this.addressesEdificationsDwellers = addressesEdificationsDwellers;
 
 	}
 

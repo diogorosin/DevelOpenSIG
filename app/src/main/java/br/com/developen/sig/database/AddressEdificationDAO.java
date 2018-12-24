@@ -13,10 +13,10 @@ public interface AddressEdificationDAO {
     void create(AddressEdificationVO addressEdificationVO);
 
     @Query("SELECT AE.* FROM AddressEdification AE WHERE AE.address = :address AND AE.edification = :edification")
-    AddressEdificationVO retrieve(int address, String edification);
+    AddressEdificationVO retrieve(int address, Integer edification);
 
     @Query("SELECT COUNT(*) > 0 FROM AddressEdification AE WHERE AE.address = :address AND AE.edification = :edification")
-    Boolean exists(int address, String edification);
+    Boolean exists(int address, Integer edification);
 
     @Update
     void update(AddressEdificationVO addressEdificationVO);

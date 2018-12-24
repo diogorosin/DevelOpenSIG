@@ -9,8 +9,8 @@ import android.support.annotation.NonNull;
 
 import br.com.developen.sig.database.AddressDAO;
 import br.com.developen.sig.database.AddressEdificationDAO;
-import br.com.developen.sig.database.AddressEdificationSubjectDAO;
-import br.com.developen.sig.database.AddressEdificationSubjectVO;
+import br.com.developen.sig.database.AddressEdificationDwellerVO;
+import br.com.developen.sig.database.AddressEdificationDwellerDAO;
 import br.com.developen.sig.database.AddressEdificationVO;
 import br.com.developen.sig.database.AddressVO;
 import br.com.developen.sig.database.AgencyDAO;
@@ -30,6 +30,8 @@ import br.com.developen.sig.database.SubjectVO;
 import br.com.developen.sig.database.SubjectView;
 import br.com.developen.sig.database.modified.ModifiedAddressDAO;
 import br.com.developen.sig.database.modified.ModifiedAddressEdificationDAO;
+import br.com.developen.sig.database.modified.ModifiedAddressEdificationSubjectDAO;
+import br.com.developen.sig.database.modified.ModifiedAddressEdificationSubjectVO;
 import br.com.developen.sig.database.modified.ModifiedAddressEdificationVO;
 import br.com.developen.sig.database.modified.ModifiedAddressVO;
 
@@ -37,7 +39,7 @@ import br.com.developen.sig.database.modified.ModifiedAddressVO;
 @Database(entities = {
         AddressVO.class,
         AddressEdificationVO.class,
-        AddressEdificationSubjectVO.class,
+        AddressEdificationDwellerVO.class,
         AgencyVO.class,
         CityVO.class,
         CountryVO.class,
@@ -47,7 +49,8 @@ import br.com.developen.sig.database.modified.ModifiedAddressVO;
         SubjectVO.class,
         SubjectView.class,
         ModifiedAddressVO.class,
-        ModifiedAddressEdificationVO.class},
+        ModifiedAddressEdificationVO.class,
+        ModifiedAddressEdificationSubjectVO.class},
         version = 001, exportSchema = false)
 public abstract class DB extends RoomDatabase {
 
@@ -100,11 +103,13 @@ public abstract class DB extends RoomDatabase {
 
     public abstract AddressEdificationDAO addressEdificationDAO();
 
-    public abstract AddressEdificationSubjectDAO addressEdificationSubjectDAO();
+    public abstract AddressEdificationDwellerDAO addressEdificationSubjectDAO();
 
     public abstract ModifiedAddressDAO modifiedAddressDAO();
 
     public abstract ModifiedAddressEdificationDAO modifiedAddressEdificationDAO();
+
+    public abstract ModifiedAddressEdificationSubjectDAO modifiedAddressEdificationSubjectDAO();
 
 
 }

@@ -56,45 +56,35 @@ public class EdificationFragment extends Fragment {
 
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View view = inflater.inflate(R.layout.fragment_edification, container, false);
+        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_edification, container, false);
 
-        if (view instanceof RecyclerView) {
+        int columns = getArguments().getInt(ARG_COLUMNS);
 
-            Context context = view.getContext();
+        if (columns <= 1)
 
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
 
-            int columns = getArguments().getInt(ARG_COLUMNS);
+        else
 
-            if (columns <= 1) {
+            recyclerView.setLayoutManager(new GridLayoutManager(recyclerView.getContext(), columns));
 
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerViewAdapter = new ModifiedAddressEdificationRecyclerViewAdapter(new ArrayList<ModifiedAddressEdificationModel>(), fragmentListener);
 
-            } else {
+        recyclerView.setAdapter(recyclerViewAdapter);
 
-                recyclerView.setLayoutManager(new GridLayoutManager(context, columns));
+        repository = ViewModelProviders.of(this).get(ModifiedAddressEdificationRepository.class);
+
+        repository.getEdificationsOfModifiedAddress(getArguments().getInt(ARG_COLUMNS)).observe(EdificationFragment.this, new Observer<List<ModifiedAddressEdificationModel>>() {
+
+            public void onChanged(@Nullable List<ModifiedAddressEdificationModel> modifiedAddressEdifications) {
+
+                recyclerViewAdapter.setModifiedAddressEdifications(modifiedAddressEdifications);
 
             }
 
-            recyclerViewAdapter = new ModifiedAddressEdificationRecyclerViewAdapter(new ArrayList<ModifiedAddressEdificationModel>(), fragmentListener);
+        });
 
-            recyclerView.setAdapter(recyclerViewAdapter);
-
-            repository = ViewModelProviders.of(this).get(ModifiedAddressEdificationRepository.class);
-
-            repository.getEdificationsOfModifiedAddress(getArguments().getInt(ARG_COLUMNS)).observe(EdificationFragment.this, new Observer<List<ModifiedAddressEdificationModel>>() {
-
-                public void onChanged(@Nullable List<ModifiedAddressEdificationModel> modifiedAddressEdifications) {
-
-                    recyclerViewAdapter.setModifiedAddressEdifications(modifiedAddressEdifications);
-
-                }
-
-            });
-
-        }
-
-        return view;
+        return recyclerView;
 
     }
 
@@ -104,6 +94,31 @@ public class EdificationFragment extends Fragment {
         void onEdificationClicked(ModifiedAddressEdificationModel modifiedAddressEdificationModel);
 
         void onEdificationLongClick(ModifiedAddressEdificationModel modifiedAddressEdificationModel);
+
+    }
+
+
+    public void onAttach(Context context) {
+
+        super.onAttach(context);
+
+        if (context instanceof EdificationFragmentListener)
+
+            fragmentListener = (EdificationFragmentListener) context;
+
+        else
+
+            throw new RuntimeException(context.toString()
+                    + " must implement EdificationFragmentListener");
+
+    }
+
+
+    public void onDetach() {
+
+        super.onDetach();
+
+        fragmentListener = null;
 
     }
 

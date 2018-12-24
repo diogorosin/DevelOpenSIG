@@ -1,10 +1,8 @@
 package br.com.developen.sig.util;
 
-import android.util.Log;
-
 import br.com.developen.sig.bean.AddressBean;
 import br.com.developen.sig.bean.AddressEdificationBean;
-import br.com.developen.sig.bean.AddressEdificationSubjectBean;
+import br.com.developen.sig.bean.AddressEdificationDwellerBean;
 import br.com.developen.sig.bean.AgencyBean;
 import br.com.developen.sig.bean.CityBean;
 import br.com.developen.sig.bean.CountryBean;
@@ -14,8 +12,8 @@ import br.com.developen.sig.bean.OrganizationBean;
 import br.com.developen.sig.bean.StateBean;
 import br.com.developen.sig.database.AddressDAO;
 import br.com.developen.sig.database.AddressEdificationDAO;
-import br.com.developen.sig.database.AddressEdificationSubjectDAO;
-import br.com.developen.sig.database.AddressEdificationSubjectVO;
+import br.com.developen.sig.database.AddressEdificationDwellerDAO;
+import br.com.developen.sig.database.AddressEdificationDwellerVO;
 import br.com.developen.sig.database.AddressEdificationVO;
 import br.com.developen.sig.database.AddressVO;
 import br.com.developen.sig.database.AgencyDAO;
@@ -315,6 +313,10 @@ public class Sync {
 
                     addressEdificationVO.setEdification(addressEdificationBean.getEdification());
 
+                    addressEdificationVO.setType(addressEdificationBean.getType());
+
+                    addressEdificationVO.setReference(addressEdificationBean.getReference());
+
                     if (addressEdificationDAO.exists(
                             addressEdificationVO.getAddress(),
                             addressEdificationVO.getEdification()))
@@ -329,39 +331,41 @@ public class Sync {
 
             }
 
-            if (datasetBean.getAddressesEdificationsSubjects() != null &&
-                    !datasetBean.getAddressesEdificationsSubjects().isEmpty()){
+            if (datasetBean.getAddressesEdificationsDwellers() != null &&
+                    !datasetBean.getAddressesEdificationsDwellers().isEmpty()){
 
-                AddressEdificationSubjectDAO addressEdificationSubjectDAO = database.addressEdificationSubjectDAO();
+                AddressEdificationDwellerDAO addressEdificationDwellerDAO = database.addressEdificationSubjectDAO();
 
-                for (AddressEdificationSubjectBean addressEdificationSubjectBean: datasetBean.getAddressesEdificationsSubjects()) {
+                for (AddressEdificationDwellerBean addressEdificationDwellerBean : datasetBean.getAddressesEdificationsDwellers()) {
 
-                    AddressEdificationSubjectVO addressEdificationSubjectVO = new AddressEdificationSubjectVO();
+                    AddressEdificationDwellerVO addressEdificationDwellerVO = new AddressEdificationDwellerVO();
 
-                    addressEdificationSubjectVO.setAddress(addressEdificationSubjectBean.getAddress());
+                    addressEdificationDwellerVO.setAddress(addressEdificationDwellerBean.getAddress());
 
-                    addressEdificationSubjectVO.setEdification(addressEdificationSubjectBean.getEdification());
+                    addressEdificationDwellerVO.setEdification(addressEdificationDwellerBean.getEdification());
 
-                    addressEdificationSubjectVO.setSubject(addressEdificationSubjectBean.getSubject());
+                    addressEdificationDwellerVO.setDweller(addressEdificationDwellerBean.getDweller());
 
-                    addressEdificationSubjectVO.setFrom(addressEdificationSubjectBean.getFrom());
+                    addressEdificationDwellerVO.setSubject(addressEdificationDwellerBean.getSubject());
 
-                    addressEdificationSubjectVO.setTo(addressEdificationSubjectBean.getTo());
+                    addressEdificationDwellerVO.setFrom(addressEdificationDwellerBean.getFrom());
 
-                    addressEdificationSubjectVO.setVerifiedAt(addressEdificationSubjectBean.getVerifiedAt());
+                    addressEdificationDwellerVO.setTo(addressEdificationDwellerBean.getTo());
 
-                    addressEdificationSubjectVO.setVerifiedBy(addressEdificationSubjectBean.getVerifiedBy());
+                    addressEdificationDwellerVO.setVerifiedAt(addressEdificationDwellerBean.getVerifiedAt());
 
-                    if (addressEdificationSubjectDAO.exists(
-                            addressEdificationSubjectVO.getAddress(),
-                            addressEdificationSubjectVO.getEdification(),
-                            addressEdificationSubjectVO.getSubject()))
+                    addressEdificationDwellerVO.setVerifiedBy(addressEdificationDwellerBean.getVerifiedBy());
 
-                        addressEdificationSubjectDAO.update(addressEdificationSubjectVO);
+                    if (addressEdificationDwellerDAO.exists(
+                            addressEdificationDwellerVO.getAddress(),
+                            addressEdificationDwellerVO.getEdification(),
+                            addressEdificationDwellerVO.getSubject()))
+
+                        addressEdificationDwellerDAO.update(addressEdificationDwellerVO);
 
                     else
 
-                        addressEdificationSubjectDAO.create(addressEdificationSubjectVO);
+                        addressEdificationDwellerDAO.create(addressEdificationDwellerVO);
 
                 }
 

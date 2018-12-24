@@ -13,7 +13,8 @@ import br.com.developen.sig.EdificationFragment;
 import br.com.developen.sig.R;
 import br.com.developen.sig.database.modified.ModifiedAddressEdificationModel;
 
-public class ModifiedAddressEdificationRecyclerViewAdapter extends RecyclerView.Adapter<ModifiedAddressEdificationRecyclerViewAdapter.ModifiedAddressEdificationViewHolder> {
+public class ModifiedAddressEdificationRecyclerViewAdapter
+        extends RecyclerView.Adapter<ModifiedAddressEdificationRecyclerViewAdapter.ModifiedAddressEdificationViewHolder> {
 
 
     private List<ModifiedAddressEdificationModel> modifiedAddressEdifications;
@@ -47,6 +48,8 @@ public class ModifiedAddressEdificationRecyclerViewAdapter extends RecyclerView.
         holder.modifiedAddressEdificationModel = modifiedAddressEdifications.get(position);
 
         holder.title.setText(modifiedAddressEdifications.get(position).getEdification());
+
+
 
 /*
         holder.dwellersCount.setText("x" +

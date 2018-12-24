@@ -19,7 +19,7 @@
     <string name="map_satellite">Satélite</string>
     <string name="map_terrain">Terreno</string>
     <string name="map">Mapa</string>
-    <string name="address">Endereço</string>
+    <string name="modifiedAddress">Endereço</string>
     <string name="edification">Edificação</string>
     <string name="dwellers">Moradores</string>
     <string name="location">Localização</string>

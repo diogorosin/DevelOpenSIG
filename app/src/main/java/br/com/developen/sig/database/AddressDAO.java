@@ -39,23 +39,26 @@ public interface AddressDAO {
             " A.postalCode AS 'postalCode', " +
             " A.latitude AS 'latitude', " +
             " A.longitude AS 'longitude', " +
-            " C.identifier AS 'city_identifier', " +
-            " C.denomination AS 'city_denomination', " +
-            " S.identifier AS 'city_state_identifier', " +
-            " S.denomination AS 'city_state_denomination', " +
-            " S.acronym AS 'city_state_acronym' " +
+            " City.identifier AS 'city_identifier', " +
+            " City.denomination AS 'city_denomination', " +
+            " CityState.identifier AS 'city_state_identifier', " +
+            " CityState.denomination AS 'city_state_denomination', " +
+            " CityState.acronym AS 'city_state_acronym', " +
+            " CityStateCountry.identifier AS 'city_state_country_identifier', " +
+            " CityStateCountry.denomination AS 'city_state_country_denomination', " +
+            " CityStateCountry.acronym AS 'city_state_country_acronym' " +
             "FROM Address A " +
-            "INNER JOIN City C ON C.identifier = A.city " +
-            "INNER JOIN State S ON S.identifier = C.state " +
-            "INNER JOIN Country Co ON Co.identifier = S.country")
+            "INNER JOIN City City ON City.identifier = A.city " +
+            "INNER JOIN State CityState ON CityState.identifier = City.state " +
+            "INNER JOIN Country CityStateCountry ON CityStateCountry.identifier = CityState.country")
     LiveData<List<AddressModel>> getAddresses();
 
     @Query("SELECT Sv.identifier, Sv.nameOrDenomination " +
-            "FROM AddressEdificationSubject AES " +
-            "INNER JOIN AddressEdification AE ON AE.address = AES.address AND AE.edification = AES.edification " +
+            "FROM AddressEdificationDweller AED " +
+            "INNER JOIN AddressEdification AE ON AE.address = AED.address AND AE.edification = AED.edification " +
             "INNER JOIN Address A ON A.identifier = AE.address " +
-            "INNER JOIN SubjectView Sv ON Sv.identifier = AES.subject " +
-            "WHERE A.identifier = :address AND AES.'to' IS NULL " +
+            "INNER JOIN SubjectView Sv ON Sv.identifier = AED.subject " +
+            "WHERE A.identifier = :address AND AED.'to' IS NULL " +
             "GROUP BY 1, 2")
     List<SubjectView> getSubjectsOfAddress(int address);
 

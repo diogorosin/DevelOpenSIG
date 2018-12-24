@@ -33,27 +33,25 @@ public class AgencyVO {
 
     }
 
-    @NonNull
     public String getDenomination() {
 
         return denomination;
 
     }
 
-    public void setDenomination(@NonNull String denomination) {
+    public void setDenomination(String denomination) {
 
         this.denomination = denomination;
 
     }
 
-    @NonNull
     public String getAcronym() {
 
         return acronym;
 
     }
 
-    public void setAcronym(@NonNull String acronym) {
+    public void setAcronym(String acronym) {
 
         this.acronym = acronym;
 

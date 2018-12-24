@@ -23,9 +23,7 @@
             android:background="@color/colorBlackMedium"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="@string/title_activity_add">
-
-        </android.support.v7.widget.Toolbar>
+            app:title="@string/title_activity_add"/>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/activity_address_tabs"
@@ -45,19 +43,13 @@
                 android:id="@+id/activity_address_tabitem_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/address" />
+                android:text="@string/modifiedAddress" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/activity_address_tabitem_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/edification" />
-
-          <!--  <android.support.design.widget.TabItem
-                android:id="@+id/activity_add_tabitem_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dweller" /> -->
 
         </android.support.design.widget.TabLayout>
 
@@ -69,12 +61,14 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <!--<android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/activity_address_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" /> -->
+        android:src="@drawable/icon_add_24"
+        android:visibility="gone"
+        android:layout_margin="16dp"
+        app:backgroundTint="@color/colorGreyDark"/>
 
 </android.support.design.widget.CoordinatorLayout>

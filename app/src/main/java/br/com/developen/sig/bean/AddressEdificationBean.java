@@ -4,7 +4,11 @@ public class AddressEdificationBean {
 
 	private Integer address;
 
-	private String edification;
+	private Integer edification;
+
+	private Integer type;
+
+	private String reference;
 
 	public Integer getAddress() {
 
@@ -18,16 +22,40 @@ public class AddressEdificationBean {
 		
 	}
 
-	public String getEdification() {
-		
+	public Integer getEdification() {
+
 		return edification;
-		
+
 	}
 
-	public void setEdification(String edification) {
-		
+	public void setEdification(Integer edification) {
+
 		this.edification = edification;
-		
+
+	}
+
+	public Integer getType() {
+
+		return type;
+
+	}
+
+	public void setType(Integer type) {
+
+		this.type = type;
+
+	}
+
+	public String getReference() {
+
+		return reference;
+
+	}
+
+	public void setReference(String reference) {
+
+		this.reference = reference;
+
 	}
 
 	public int hashCode() {
