@@ -24,6 +24,7 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -75,7 +76,6 @@ public class MapActivity
 
     public static final int MY_LOCATION_PERMISSION_REQUEST = 1;
 
-    public static final String MODIFIED_ADDRESS_IDENTIFIER = "ARG_MODIFIED_ADDRESS_IDENTIFIER";
 
 
     private ClusterManager<AddressClusterItem> clusterManager;
@@ -637,7 +637,7 @@ public class MapActivity
 
         Intent addIntent = new Intent(MapActivity.this, AddressActivity.class);
 
-        addIntent.putExtra(MODIFIED_ADDRESS_IDENTIFIER, identifier);
+        addIntent.putExtra(AddressActivity.MODIFIED_ADDRESS_IDENTIFIER, identifier);
 
         startActivity(addIntent);
 

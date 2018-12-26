@@ -39,7 +39,11 @@
         <activity android:name=".MapActivity"/>
         <activity
             android:name=".AddressActivity"
-            android:label="@string/title_activity_add"
+            android:label="@string/title_activity_address"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".EdificationActivity"
+            android:label="@string/title_activity_edification"
             android:theme="@style/AppTheme"/>
     </application>
 

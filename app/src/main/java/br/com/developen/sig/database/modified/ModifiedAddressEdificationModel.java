@@ -1,35 +1,67 @@
 package br.com.developen.sig.database.modified;
 
 
+import android.arch.persistence.room.Embedded;
+
 import java.util.Objects;
 
 public class ModifiedAddressEdificationModel {
 
-    private Integer modifiedAddress;
+    @Embedded(prefix = "modifiedAddress_")
+    private ModifiedAddressModel modifiedAddress;
 
-    private String edification;
+    private Integer edification;
 
-    public Integer getModifiedAddress() {
+    private Integer type;
+
+    private String reference;
+
+
+    public ModifiedAddressModel getModifiedAddress() {
 
         return modifiedAddress;
 
     }
 
-    public void setModifiedAddress(Integer modifiedAddress) {
+    public void setModifiedAddress(ModifiedAddressModel modifiedAddress) {
 
         this.modifiedAddress = modifiedAddress;
 
     }
 
-    public String getEdification() {
+    public Integer getEdification() {
 
         return edification;
 
     }
 
-    public void setEdification(String edification) {
+    public void setEdification(Integer edification) {
 
         this.edification = edification;
+
+    }
+
+    public Integer getType() {
+
+        return type;
+
+    }
+
+    public void setType(Integer type) {
+
+        this.type = type;
+
+    }
+
+    public String getReference() {
+
+        return reference;
+
+    }
+
+    public void setReference(String reference) {
+
+        this.reference = reference;
 
     }
 

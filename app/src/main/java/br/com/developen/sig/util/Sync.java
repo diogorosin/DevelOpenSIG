@@ -334,7 +334,7 @@ public class Sync {
             if (datasetBean.getAddressesEdificationsDwellers() != null &&
                     !datasetBean.getAddressesEdificationsDwellers().isEmpty()){
 
-                AddressEdificationDwellerDAO addressEdificationDwellerDAO = database.addressEdificationSubjectDAO();
+                AddressEdificationDwellerDAO addressEdificationDwellerDAO = database.addressEdificationDwellerDAO();
 
                 for (AddressEdificationDwellerBean addressEdificationDwellerBean : datasetBean.getAddressesEdificationsDwellers()) {
 

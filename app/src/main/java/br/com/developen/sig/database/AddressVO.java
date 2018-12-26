@@ -15,7 +15,7 @@ import android.support.annotation.NonNull;
                         childColumns = "city",
                         onDelete = ForeignKey.RESTRICT,
                         onUpdate = ForeignKey.CASCADE)},
-        indices = {@Index("identifier")})
+        indices = {@Index("identifier"), @Index("city")})
 public class AddressVO {
 
     @PrimaryKey

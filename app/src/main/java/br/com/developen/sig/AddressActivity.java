@@ -1,6 +1,6 @@
 package br.com.developen.sig;
 
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -13,10 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.ScaleAnimation;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -30,9 +26,8 @@ public class AddressActivity extends AppCompatActivity
         UpdateAddressLocationAsynTask.Listener {
 
 
-//    int[] colorIntArray = {R.color.colorGreyDark,R.color.colorGreyDark,R.color.colorGreyDark};
+    public static final String MODIFIED_ADDRESS_IDENTIFIER = "ARG_MODIFIED_ADDRESS_IDENTIFIER";
 
-//    int[] iconIntArray = {R.drawable.icon_add_24,R.drawable.icon_add_24,R.drawable.icon_add_24};
 
     private SectionsPagerAdapter sectionsPagerAdapter;
 
@@ -58,13 +53,17 @@ public class AddressActivity extends AppCompatActivity
         viewPager.setAdapter(sectionsPagerAdapter);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
             public void onPageSelected(int position) {
 
                 floatingActionButton.setVisibility(position==2?View.VISIBLE:View.GONE);
 
             }
+
             public void onPageScrollStateChanged(int state) {}
+
         });
 
         final TabLayout tabLayout = findViewById(R.id.activity_address_tabs);
@@ -78,7 +77,7 @@ public class AddressActivity extends AppCompatActivity
 
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu_add, menu);
+        getMenuInflater().inflate(R.menu.menu_address, menu);
 
         return true;
 
@@ -89,7 +88,7 @@ public class AddressActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.action_settings)
+        if (id == R.id.menu_address_action_settings)
 
             return true;
 
@@ -104,7 +103,7 @@ public class AddressActivity extends AppCompatActivity
     public void onLocationChanged(LatLng latLng) {
 
         new UpdateAddressLocationAsynTask<>(this).execute(
-                getIntent().getIntExtra(MapActivity.MODIFIED_ADDRESS_IDENTIFIER,0),
+                getIntent().getIntExtra(MODIFIED_ADDRESS_IDENTIFIER,0),
                 latLng.latitude,
                 latLng.longitude);
 
@@ -117,7 +116,20 @@ public class AddressActivity extends AppCompatActivity
     public void onUpdateAddressLocationFailure(Messaging messaging) {}
 
 
-    public void onEdificationClicked(ModifiedAddressEdificationModel modifiedAddressEdificationModel) {}
+    public void onEdificationClicked(ModifiedAddressEdificationModel modifiedAddressEdificationModel) {
+
+        Intent addIntent = new Intent(AddressActivity.this, EdificationActivity.class);
+
+        addIntent.putExtra(EdificationActivity.MODIFIED_ADDRESS_IDENTIFIER, modifiedAddressEdificationModel.
+                getModifiedAddress().
+                getIdentifier());
+
+        addIntent.putExtra(EdificationActivity.EDIFICATION_IDENTIFIER, modifiedAddressEdificationModel.
+                getEdification());
+
+        startActivity(addIntent);
+
+    }
 
 
     public void onEdificationLongClick(ModifiedAddressEdificationModel modifiedAddressEdificationModel) {}
@@ -140,21 +152,21 @@ public class AddressActivity extends AppCompatActivity
                 case 0:
 
                     f = LocationFragment.newInstance(AddressActivity.this,
-                            getIntent().getIntExtra(MapActivity.MODIFIED_ADDRESS_IDENTIFIER, 0));
+                            getIntent().getIntExtra(MODIFIED_ADDRESS_IDENTIFIER, 0));
 
                     break;
 
                 case 1:
 
                     f = AddressFragment.newInstance(getIntent().
-                            getIntExtra(MapActivity.MODIFIED_ADDRESS_IDENTIFIER, 0));
+                            getIntExtra(MODIFIED_ADDRESS_IDENTIFIER, 0));
 
                     break;
 
                 case 2:
 
                     f = EdificationFragment.newInstance(getIntent().
-                            getIntExtra(MapActivity.MODIFIED_ADDRESS_IDENTIFIER, 0));
+                            getIntExtra(MODIFIED_ADDRESS_IDENTIFIER, 0));
 
                     break;
 
@@ -172,44 +184,5 @@ public class AddressActivity extends AppCompatActivity
 
     }
 
-    /*protected void animateFab(final int position) {
-
-        floatingActionButton.clearAnimation();
-
-        ScaleAnimation shrink =  new ScaleAnimation(1f, 0.2f, 1f, 0.2f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-
-        shrink.setDuration(150);
-
-        shrink.setInterpolator(new DecelerateInterpolator());
-
-        shrink.setAnimationListener(new Animation.AnimationListener() {
-
-            public void onAnimationStart(Animation animation) {}
-
-            public void onAnimationEnd(Animation animation) {
-
-                floatingActionButton.setBackgroundTintList(getResources().getColorStateList(colorIntArray[position]));
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-
-                    floatingActionButton.setImageDrawable(getResources().getDrawable(iconIntArray[position], null));
-
-                ScaleAnimation expand = new ScaleAnimation(0.2f, 1f, 0.2f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-
-                expand.setDuration(100);
-
-                expand.setInterpolator(new AccelerateInterpolator());
-
-                floatingActionButton.startAnimation(expand);
-
-            }
-
-            public void onAnimationRepeat(Animation animation) {}
-
-        });
-
-        floatingActionButton.startAnimation(shrink);
-
-    }*/
 
 }

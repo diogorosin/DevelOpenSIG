@@ -28,7 +28,9 @@ import java.util.Objects;
                         childColumns = "verifiedBy",
                         onDelete = ForeignKey.RESTRICT,
                         onUpdate = ForeignKey.CASCADE)},
-        indices = {@Index(value={"address", "edification", "dweller"})})
+        indices = {@Index({"address", "edification", "dweller"}),
+                @Index({"subject"}),
+                @Index({"verifiedBy"})})
 public class AddressEdificationDwellerVO {
 
     @NonNull

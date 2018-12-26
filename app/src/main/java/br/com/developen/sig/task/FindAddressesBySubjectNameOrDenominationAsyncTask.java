@@ -35,7 +35,7 @@ public class FindAddressesBySubjectNameOrDenominationAsyncTask<
             DB database = DB.getInstance(activity.get());
 
             return database.
-                    addressEdificationSubjectDAO().
+                    addressEdificationDwellerDAO().
                     findBySubjectNameOrDenomination( "%" + parameters[0].toUpperCase() + "%");
 
         } catch (Exception e) {

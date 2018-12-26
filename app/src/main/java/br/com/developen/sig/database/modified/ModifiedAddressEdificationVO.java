@@ -26,31 +26,60 @@ public class ModifiedAddressEdificationVO {
 
     @NonNull
     @ColumnInfo(name="edification")
-    private String edification;
+    private Integer edification;
 
     @NonNull
+    @ColumnInfo(name="type")
+    private Integer type;
+
+    @ColumnInfo(name="reference")
+    private String reference;
+
     public Integer getModifiedAddress() {
 
         return modifiedAddress;
 
     }
 
-    public void setModifiedAddress(@NonNull Integer modifiedAddress) {
+    public void setModifiedAddress(Integer modifiedAddress) {
 
         this.modifiedAddress = modifiedAddress;
 
     }
 
-    @NonNull
-    public String getEdification() {
+    public Integer getEdification() {
 
         return edification;
 
     }
 
-    public void setEdification(@NonNull String edification) {
+    public void setEdification(Integer edification) {
 
         this.edification = edification;
+
+    }
+
+    public Integer getType() {
+
+        return type;
+
+    }
+
+    public void setType(Integer type) {
+
+        this.type = type;
+
+    }
+
+    public String getReference() {
+
+        return reference;
+
+    }
+
+    public void setReference(String reference) {
+
+        this.reference = reference;
 
     }
 

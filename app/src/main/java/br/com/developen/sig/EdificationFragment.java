@@ -74,7 +74,7 @@ public class EdificationFragment extends Fragment {
 
         repository = ViewModelProviders.of(this).get(ModifiedAddressEdificationRepository.class);
 
-        repository.getEdificationsOfModifiedAddress(getArguments().getInt(ARG_COLUMNS)).observe(EdificationFragment.this, new Observer<List<ModifiedAddressEdificationModel>>() {
+        repository.getEdificationsOfModifiedAddress(getArguments().getInt(ARG_MODIFIED_ADDRESS_IDENTIFIER)).observe(EdificationFragment.this, new Observer<List<ModifiedAddressEdificationModel>>() {
 
             public void onChanged(@Nullable List<ModifiedAddressEdificationModel> modifiedAddressEdifications) {
 

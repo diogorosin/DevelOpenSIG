@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import java.lang.ref.WeakReference;
 import java.util.Date;
 
+import br.com.developen.sig.database.modified.ModifiedAddressEdificationDwellerModel;
+import br.com.developen.sig.database.modified.ModifiedAddressEdificationDwellerVO;
 import br.com.developen.sig.database.modified.ModifiedAddressEdificationVO;
 import br.com.developen.sig.database.modified.ModifiedAddressVO;
 import br.com.developen.sig.exception.CannotInitializeDatabaseException;
@@ -76,15 +78,58 @@ public class CreateAddressAsynTask<A extends Activity & CreateAddressAsynTask.Li
 
             modifiedAddressEdificationVO.setModifiedAddress(identifier);
 
-            modifiedAddressEdificationVO.setEdification("RESID00001");
+            modifiedAddressEdificationVO.setEdification(1);
+
+            modifiedAddressEdificationVO.setType(1);
 
             database.modifiedAddressEdificationDAO().create(modifiedAddressEdificationVO);
+
+
+            ModifiedAddressEdificationDwellerVO modifiedAddressEdificationDwellerVO = new ModifiedAddressEdificationDwellerVO();
+
+            modifiedAddressEdificationDwellerVO.setModifiedAddress(modifiedAddressEdificationVO.getModifiedAddress());
+
+            modifiedAddressEdificationDwellerVO.setEdification(modifiedAddressEdificationVO.getEdification());
+
+            modifiedAddressEdificationDwellerVO.setDweller(1);
+
+            modifiedAddressEdificationDwellerVO.setSubject(null);
+
+            modifiedAddressEdificationDwellerVO.setNameOrDenomination("Patricia Ragazzon");
+
+            modifiedAddressEdificationDwellerVO.setFancyName(null);
+
+            modifiedAddressEdificationDwellerVO.setMotherName("Ivani Ragazzon");
+
+            modifiedAddressEdificationDwellerVO.setFatherName("Walter Ragazzon");
+
+            modifiedAddressEdificationDwellerVO.setType("F");
+
+            modifiedAddressEdificationDwellerVO.setGender("F");
+
+            modifiedAddressEdificationDwellerVO.setBirthDate(new Date());
+
+            modifiedAddressEdificationDwellerVO.setBirthPlace(4569);
+
+            modifiedAddressEdificationDwellerVO.setCpf(5369609926L);
+
+            modifiedAddressEdificationDwellerVO.setRgNumber(3100191L);
+
+            modifiedAddressEdificationDwellerVO.setRgAgency(1);
+
+            modifiedAddressEdificationDwellerVO.setRgState(24);
+
+
+            database.modifiedAddressEdificationDwellerDAO().create(modifiedAddressEdificationDwellerVO);
+
 
             database.setTransactionSuccessful();
 
             return identifier;
 
         } catch(Exception e) {
+
+            e.printStackTrace();
 
             return new InternalException();
 

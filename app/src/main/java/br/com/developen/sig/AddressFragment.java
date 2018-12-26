@@ -17,6 +17,7 @@ public class AddressFragment extends Fragment {
 
     private static final String ARG_MODIFIED_ADDRESS_IDENTIFIER = "ARG_MODIFIED_ADDRESS_IDENTIFIER";
 
+
     private ModifiedAddressRepository modifiedAddressRepository;
 
     private TextInputEditText thoroughfareEditText;

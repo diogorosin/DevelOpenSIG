@@ -30,8 +30,8 @@ import br.com.developen.sig.database.SubjectVO;
 import br.com.developen.sig.database.SubjectView;
 import br.com.developen.sig.database.modified.ModifiedAddressDAO;
 import br.com.developen.sig.database.modified.ModifiedAddressEdificationDAO;
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationSubjectDAO;
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationSubjectVO;
+import br.com.developen.sig.database.modified.ModifiedAddressEdificationDwellerDAO;
+import br.com.developen.sig.database.modified.ModifiedAddressEdificationDwellerVO;
 import br.com.developen.sig.database.modified.ModifiedAddressEdificationVO;
 import br.com.developen.sig.database.modified.ModifiedAddressVO;
 
@@ -50,7 +50,7 @@ import br.com.developen.sig.database.modified.ModifiedAddressVO;
         SubjectView.class,
         ModifiedAddressVO.class,
         ModifiedAddressEdificationVO.class,
-        ModifiedAddressEdificationSubjectVO.class},
+        ModifiedAddressEdificationDwellerVO.class},
         version = 001, exportSchema = false)
 public abstract class DB extends RoomDatabase {
 
@@ -103,13 +103,12 @@ public abstract class DB extends RoomDatabase {
 
     public abstract AddressEdificationDAO addressEdificationDAO();
 
-    public abstract AddressEdificationDwellerDAO addressEdificationSubjectDAO();
+    public abstract AddressEdificationDwellerDAO addressEdificationDwellerDAO();
 
     public abstract ModifiedAddressDAO modifiedAddressDAO();
 
     public abstract ModifiedAddressEdificationDAO modifiedAddressEdificationDAO();
 
-    public abstract ModifiedAddressEdificationSubjectDAO modifiedAddressEdificationSubjectDAO();
-
+    public abstract ModifiedAddressEdificationDwellerDAO modifiedAddressEdificationDwellerDAO();
 
 }

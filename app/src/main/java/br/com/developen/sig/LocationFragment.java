@@ -26,7 +26,6 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
 
     private static final String ARG_MODIFIED_ADDRESS_IDENTIFIER = "ARG_MODIFIED_ADDRESS_IDENTIFIER";
 
-
     private Marker marker;
 
     private MapView mapView;

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="br.com.developen.sig.EdificationActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/activity_edification_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlackMedium"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:paddingTop="@dimen/appbar_padding_top">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/activity_edification_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:background="@color/colorBlackMedium"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="@string/title_activity_edification"/>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/activity_edification_tabs"
+            android:background="@color/colorBlackMedium"
+            app:tabIndicatorColor="@color/colorGreyDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorHeight="4dp">
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/activity_edification_tabitem_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/type"/>
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/activity_edification_tabitem_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dwellers"/>
+
+        </android.support.design.widget.TabLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/activity_edification_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/activity_edification_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/icon_add_24"
+        android:visibility="gone"
+        android:layout_margin="16dp"
+        app:backgroundTint="@color/colorGreyDark"/>
+
+</android.support.design.widget.CoordinatorLayout>
