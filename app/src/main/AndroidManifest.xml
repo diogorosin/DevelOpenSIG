@@ -38,11 +38,11 @@
         <activity android:name=".LoginActivity"/>
         <activity android:name=".MapActivity"/>
         <activity
-            android:name=".AddressActivity"
+            android:name=".ModifiedAddressActivity"
             android:label="@string/title_activity_address"
             android:theme="@style/AppTheme"/>
         <activity
-            android:name=".EdificationActivity"
+            android:name=".ModifiedAddressEdificationActivity"
             android:label="@string/title_activity_edification"
             android:theme="@style/AppTheme"/>
     </application>

@@ -85,7 +85,9 @@ public interface ModifiedAddressEdificationDwellerDAO {
             " BirthPlaceStateCountry.denomination AS 'birthPlace_state_country_denomination', " +
             " BirthPlaceStateCountry.acronym AS 'birthPlace_state_country_acronym', " +
             " MAED.birthDate AS 'birthDate', " +
-            " MAED.gender AS 'gender' " +
+            " MAED.gender AS 'gender', " +
+            " MAED.'from' AS 'from', " +
+            " MAED.'to' AS 'to' " +
             "FROM ModifiedAddressEdificationDweller MAED " +
             "INNER JOIN ModifiedAddressEdification MAE ON MAE.modifiedAddress = MAED.modifiedAddress AND MAE.edification = MAED.edification " +
             "INNER JOIN ModifiedAddress MA ON MA.identifier = MAE.modifiedAddress " +

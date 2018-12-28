@@ -9,9 +9,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import br.com.developen.sig.DwellerFragment;
+import br.com.developen.sig.fragment.ModifiedAddressEdificationDwellerFragment;
 import br.com.developen.sig.R;
 import br.com.developen.sig.database.modified.ModifiedAddressEdificationDwellerModel;
+import br.com.developen.sig.util.StringUtils;
 
 public class ModifiedAddressEdificationDwellerRecyclerViewAdapter
         extends RecyclerView.Adapter<ModifiedAddressEdificationDwellerRecyclerViewAdapter.ModifiedAddressEdificationDwellerViewHolder> {
@@ -24,10 +25,10 @@ public class ModifiedAddressEdificationDwellerRecyclerViewAdapter
 
     private List<ModifiedAddressEdificationDwellerModel> modifiedAddressEdificationDwellers;
 
-    private DwellerFragment.DwellerFragmentListener fragmentListener;
+    private ModifiedAddressEdificationDwellerFragment.ModifiedAddressEdificationDwellerFragmentListener fragmentListener;
 
 
-    public ModifiedAddressEdificationDwellerRecyclerViewAdapter(List<ModifiedAddressEdificationDwellerModel> modifiedAddressEdifications, DwellerFragment.DwellerFragmentListener listener) {
+    public ModifiedAddressEdificationDwellerRecyclerViewAdapter(List<ModifiedAddressEdificationDwellerModel> modifiedAddressEdifications, ModifiedAddressEdificationDwellerFragment.ModifiedAddressEdificationDwellerFragmentListener listener) {
 
         this.modifiedAddressEdificationDwellers = modifiedAddressEdifications;
 
@@ -44,10 +45,10 @@ public class ModifiedAddressEdificationDwellerRecyclerViewAdapter
 
         switch (viewType){
 
-            case INDIVIDUAL: layout = R.layout.fragment_dweller_individual;
+            case INDIVIDUAL: layout = R.layout.fragment_modified_address_edification_dweller_row_individual;
                 break;
 
-            case ORGANIZATION: layout = R.layout.fragment_dweller_organization;
+            case ORGANIZATION: layout = R.layout.fragment_modified_address_edification_dweller_row_organization;
                 break;
 
         }
@@ -82,6 +83,8 @@ public class ModifiedAddressEdificationDwellerRecyclerViewAdapter
         holder.modifiedAddressEdificationDwellerModel = modifiedAddressEdificationDwellers.get(position);
 
         holder.nameOrDenomination.setText(modifiedAddressEdificationDwellers.get(position).getNameOrDenomination());
+
+        holder.from.setText("Desde " + StringUtils.formatDate(modifiedAddressEdificationDwellers.get(position).getFrom()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 
@@ -141,11 +144,15 @@ public class ModifiedAddressEdificationDwellerRecyclerViewAdapter
 
         public TextView nameOrDenomination;
 
+        public TextView from;
+
         public ModifiedAddressEdificationDwellerViewHolder(View view) {
 
             super(view);
 
-            nameOrDenomination = view.findViewById(R.id.fragment_dweller_nameOrDenomination);
+            nameOrDenomination = view.findViewById(R.id.fragment_modified_address_edification_dweller_row_nameOrDenomination_textview);
+
+            from = view.findViewById(R.id.fragment_modified_address_edification_dweller_row_from_textview);
 
         }
 

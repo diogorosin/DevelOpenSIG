@@ -1,6 +1,5 @@
 package br.com.developen.sig.database.modified;
 
-import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.TypeConverters;
 
@@ -11,6 +10,7 @@ import br.com.developen.sig.database.AgencyModel;
 import br.com.developen.sig.database.CityModel;
 import br.com.developen.sig.database.DateConverter;
 import br.com.developen.sig.database.StateModel;
+import br.com.developen.sig.database.TimestampConverter;
 
 
 public class ModifiedAddressEdificationDwellerModel {
@@ -46,10 +46,15 @@ public class ModifiedAddressEdificationDwellerModel {
     private CityModel birthPlace;
 
     @TypeConverters({DateConverter.class})
-    @ColumnInfo(name="birthDate")
     private Date birthDate;
 
     private String gender;
+
+    @TypeConverters({TimestampConverter.class})
+    private Date from;
+
+    @TypeConverters({TimestampConverter.class})
+    private Date to;
 
 
     public ModifiedAddressEdificationModel getModifiedAddressEdification() {
@@ -58,11 +63,13 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public void setModifiedAddressEdification(ModifiedAddressEdificationModel modifiedAddressEdification) {
 
         this.modifiedAddressEdification = modifiedAddressEdification;
 
     }
+
 
     public Integer getDweller() {
 
@@ -70,11 +77,13 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public void setDweller(Integer dweller) {
 
         this.dweller = dweller;
 
     }
+
 
     public Integer getSubject() {
 
@@ -82,11 +91,13 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public void setSubject(Integer subject) {
 
         this.subject = subject;
 
     }
+
 
     public String getNameOrDenomination() {
 
@@ -94,11 +105,13 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public void setNameOrDenomination(String nameOrDenomination) {
 
         this.nameOrDenomination = nameOrDenomination;
 
     }
+
 
     public String getType() {
 
@@ -106,11 +119,13 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public void setType(String type) {
 
         this.type = type;
 
     }
+
 
     public String getFancyName() {
 
@@ -118,11 +133,13 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public void setFancyName(String fancyName) {
 
         this.fancyName = fancyName;
 
     }
+
 
     public String getMotherName() {
 
@@ -130,11 +147,13 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public void setMotherName(String motherName) {
 
         this.motherName = motherName;
 
     }
+
 
     public String getFatherName() {
 
@@ -142,11 +161,13 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public void setFatherName(String fatherName) {
 
         this.fatherName = fatherName;
 
     }
+
 
     public Long getCpf() {
 
@@ -154,11 +175,13 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public void setCpf(Long cpf) {
 
         this.cpf = cpf;
 
     }
+
 
     public Long getRgNumber() {
 
@@ -166,11 +189,13 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public void setRgNumber(Long rgNumber) {
 
         this.rgNumber = rgNumber;
 
     }
+
 
     public AgencyModel getRgAgency() {
 
@@ -178,11 +203,13 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public void setRgAgency(AgencyModel rgAgency) {
 
         this.rgAgency = rgAgency;
 
     }
+
 
     public StateModel getRgState() {
 
@@ -190,11 +217,13 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public void setRgState(StateModel rgState) {
 
         this.rgState = rgState;
 
     }
+
 
     public CityModel getBirthPlace() {
 
@@ -202,11 +231,13 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public void setBirthPlace(CityModel birthPlace) {
 
         this.birthPlace = birthPlace;
 
     }
+
 
     public Date getBirthDate() {
 
@@ -214,11 +245,13 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public void setBirthDate(Date birthDate) {
 
         this.birthDate = birthDate;
 
     }
+
 
     public String getGender() {
 
@@ -226,11 +259,41 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public void setGender(String gender) {
 
         this.gender = gender;
 
     }
+
+
+    public Date getFrom() {
+
+        return from;
+
+    }
+
+
+    public void setFrom(Date from) {
+
+        this.from = from;
+
+    }
+
+
+    public Date getTo() {
+
+        return to;
+
+    }
+
+
+    public void setTo(Date to) {
+
+        this.to = to;
+
+    }
+
 
     public boolean equals(Object o) {
 
@@ -242,10 +305,12 @@ public class ModifiedAddressEdificationDwellerModel {
 
     }
 
+
     public int hashCode() {
 
         return Objects.hash(modifiedAddressEdification, dweller);
 
     }
+
 
 }

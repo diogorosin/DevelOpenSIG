@@ -119,8 +119,51 @@ public class CreateAddressAsynTask<A extends Activity & CreateAddressAsynTask.Li
 
             modifiedAddressEdificationDwellerVO.setRgState(24);
 
+            modifiedAddressEdificationDwellerVO.setFrom(new Date());
 
             database.modifiedAddressEdificationDwellerDAO().create(modifiedAddressEdificationDwellerVO);
+
+
+
+            modifiedAddressEdificationDwellerVO = new ModifiedAddressEdificationDwellerVO();
+
+            modifiedAddressEdificationDwellerVO.setModifiedAddress(modifiedAddressEdificationVO.getModifiedAddress());
+
+            modifiedAddressEdificationDwellerVO.setEdification(modifiedAddressEdificationVO.getEdification());
+
+            modifiedAddressEdificationDwellerVO.setDweller(2);
+
+            modifiedAddressEdificationDwellerVO.setSubject(null);
+
+            modifiedAddressEdificationDwellerVO.setNameOrDenomination("Diogo Rosin");
+
+            modifiedAddressEdificationDwellerVO.setFancyName(null);
+
+            modifiedAddressEdificationDwellerVO.setMotherName("Ilonir Rosin");
+
+            modifiedAddressEdificationDwellerVO.setFatherName("Odilete Buzin");
+
+            modifiedAddressEdificationDwellerVO.setType("F");
+
+            modifiedAddressEdificationDwellerVO.setGender("M");
+
+            modifiedAddressEdificationDwellerVO.setBirthDate(new Date());
+
+            modifiedAddressEdificationDwellerVO.setBirthPlace(4569);
+
+            modifiedAddressEdificationDwellerVO.setCpf(5369649926L);
+
+            modifiedAddressEdificationDwellerVO.setRgNumber(3700191L);
+
+            modifiedAddressEdificationDwellerVO.setRgAgency(1);
+
+            modifiedAddressEdificationDwellerVO.setRgState(24);
+
+            modifiedAddressEdificationDwellerVO.setFrom(new Date());
+
+            database.modifiedAddressEdificationDwellerDAO().create(modifiedAddressEdificationDwellerVO);
+
+
 
 
             database.setTransactionSuccessful();

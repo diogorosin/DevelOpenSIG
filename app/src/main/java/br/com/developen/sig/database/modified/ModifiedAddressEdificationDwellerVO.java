@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import br.com.developen.sig.database.DateConverter;
+import br.com.developen.sig.database.TimestampConverter;
 
 @Entity(tableName = "ModifiedAddressEdificationDweller",
         primaryKeys = {"modifiedAddress", "edification", "dweller"},
@@ -76,6 +77,15 @@ public class ModifiedAddressEdificationDwellerVO {
 
     @ColumnInfo(name="gender")
     private String gender;
+
+    @NonNull
+    @TypeConverters({TimestampConverter.class})
+    @ColumnInfo(name="from")
+    private Date from;
+
+    @ColumnInfo(name="to")
+    @TypeConverters({TimestampConverter.class})
+    private Date to;
 
 
     public Integer getModifiedAddress() {
@@ -298,6 +308,34 @@ public class ModifiedAddressEdificationDwellerVO {
     public void setGender(String gender) {
 
         this.gender = gender;
+
+    }
+
+
+    public Date getFrom() {
+
+        return from;
+
+    }
+
+
+    public void setFrom(Date from) {
+
+        this.from = from;
+
+    }
+
+
+    public Date getTo() {
+
+        return to;
+
+    }
+
+
+    public void setTo(Date to) {
+
+        this.to = to;
 
     }
 

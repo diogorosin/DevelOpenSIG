@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?attr/selectableItemBackground"
+    android:padding="7dp">
+    <ImageView
+        android:id="@+id/fragment_modified_address_edification_dweller_row_photo_imageview"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/organization"
+        android:padding="10dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="0.6"
+        android:paddingEnd="7dp"
+        android:paddingStart="7dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/fragment_modified_address_edification_dweller_row_nameOrDenomination_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/fragment_modified_address_edification_dweller_row_from_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:textSize="12sp" />
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/fragment_modified_address_edification_dweller_row_delete_imagebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:background="@drawable/icon_door_exit_24"
+        android:layout_margin="10dp" />
+</LinearLayout>

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import br.com.developen.sig.EdificationFragment;
+import br.com.developen.sig.fragment.ModifiedAddressEdificationFragment;
 import br.com.developen.sig.R;
 import br.com.developen.sig.database.modified.ModifiedAddressEdificationModel;
 
@@ -22,10 +22,10 @@ public class ModifiedAddressEdificationRecyclerViewAdapter
 
     private List<ModifiedAddressEdificationModel> modifiedAddressEdifications;
 
-    private EdificationFragment.EdificationFragmentListener fragmentListener;
+    private ModifiedAddressEdificationFragment.EdificationFragmentListener fragmentListener;
 
 
-    public ModifiedAddressEdificationRecyclerViewAdapter(List<ModifiedAddressEdificationModel> modifiedAddressEdifications, EdificationFragment.EdificationFragmentListener listener) {
+    public ModifiedAddressEdificationRecyclerViewAdapter(List<ModifiedAddressEdificationModel> modifiedAddressEdifications, ModifiedAddressEdificationFragment.EdificationFragmentListener listener) {
 
         this.modifiedAddressEdifications = modifiedAddressEdifications;
 
@@ -42,7 +42,7 @@ public class ModifiedAddressEdificationRecyclerViewAdapter
 
         switch (viewType){
 
-            case HOUSE_EDIFICATION: layout = R.layout.fragment_edification_house;
+            case HOUSE_EDIFICATION: layout = R.layout.fragment_modified_address_edification_row_house;
                 break;
 
         }
@@ -146,9 +146,9 @@ public class ModifiedAddressEdificationRecyclerViewAdapter
 
             super(view);
 
-            dwellersCount = view.findViewById(R.id.fragment_edification_row_dwellers_count_textview);
+            dwellersCount = view.findViewById(R.id.fragment_modified_address_edification_row_dwellers_count_textview);
 
-            title = view.findViewById(R.id.fragment_edification_row_title_textview);
+            title = view.findViewById(R.id.fragment_modified_address_edification_row_title_textview);
 
         }
 
