@@ -1,5 +1,6 @@
 package br.com.developen.sig;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -13,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationDwellerModel;
+import br.com.developen.sig.database.ModifiedAddressEdificationDwellerModel;
 import br.com.developen.sig.fragment.ModifiedAddressEdificationDwellerFragment;
 import br.com.developen.sig.fragment.ModifiedAddressEdificationTypeFragment;
 
@@ -97,7 +98,28 @@ public class ModifiedAddressEdificationActivity extends AppCompatActivity
     public void onPointerCaptureChanged(boolean hasCapture) {}
 
 
-    public void onDwellerClicked(ModifiedAddressEdificationDwellerModel modifiedAddressEdificationDwellerModel) {}
+    public void onDwellerClicked(ModifiedAddressEdificationDwellerModel modifiedAddressEdificationDwellerModel) {
+
+        Intent dwellerIntent = new Intent(ModifiedAddressEdificationActivity.this, ModifiedAddressEdificationDwellerActivity.class);
+
+        dwellerIntent.putExtra(ModifiedAddressEdificationDwellerActivity.MODIFIED_ADDRESS_IDENTIFIER,
+                modifiedAddressEdificationDwellerModel.
+                        getModifiedAddressEdification().
+                        getModifiedAddress().
+                        getIdentifier());
+
+        dwellerIntent.putExtra(ModifiedAddressEdificationDwellerActivity.EDIFICATION_IDENTIFIER,
+                modifiedAddressEdificationDwellerModel.
+                        getModifiedAddressEdification().
+                        getEdification());
+
+        dwellerIntent.putExtra(ModifiedAddressEdificationDwellerActivity.DWELLER_IDENTIFIER,
+                modifiedAddressEdificationDwellerModel.
+                        getDweller());
+
+        startActivity(dwellerIntent);
+
+    }
 
 
     public void onDwellerLongClick(ModifiedAddressEdificationDwellerModel modifiedAddressEdificationDwellerModel) {}

@@ -24,27 +24,29 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AccountActivity"/>
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".MapActivity"/>
+        <activity android:name=".AccountActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MapActivity" />
         <activity
             android:name=".ModifiedAddressActivity"
             android:label="@string/title_activity_address"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ModifiedAddressEdificationActivity"
             android:label="@string/title_activity_edification"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ModifiedAddressEdificationDwellerActivity"
+            android:label="@string/title_activity_modified_address_edification_dweller"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.developen.sig.R;
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationModel;
+import br.com.developen.sig.database.ModifiedAddressEdificationModel;
 import br.com.developen.sig.repository.ModifiedAddressEdificationRepository;
 import br.com.developen.sig.widget.ModifiedAddressEdificationRecyclerViewAdapter;
 
@@ -57,7 +57,7 @@ public class ModifiedAddressEdificationFragment extends Fragment {
 
         super.onCreateView(inflater, container, savedInstanceState);
 
-        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_modified_address_edification, container, false);
+        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_modified_address_edification_list, container, false);
 
         int columns = getArguments().getInt(ARG_COLUMNS);
 

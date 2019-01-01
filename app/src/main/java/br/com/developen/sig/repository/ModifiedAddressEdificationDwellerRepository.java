@@ -6,17 +6,21 @@ import android.arch.lifecycle.LiveData;
 
 import java.util.List;
 
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationDwellerModel;
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationDwellerDAO;
+import br.com.developen.sig.database.ModifiedAddressEdificationDwellerModel;
+import br.com.developen.sig.database.ModifiedAddressEdificationDwellerDAO;
 import br.com.developen.sig.util.DB;
 
 public class ModifiedAddressEdificationDwellerRepository extends AndroidViewModel {
+
 
     private Application application;
 
     private ModifiedAddressEdificationDwellerDAO dao;
 
     private LiveData<List<ModifiedAddressEdificationDwellerModel>> modifiedAddressEdificationDwellers;
+
+    private LiveData<ModifiedAddressEdificationDwellerModel> modifiedAddressEdificationDweller;
+
 
     public ModifiedAddressEdificationDwellerRepository(Application application){
 
@@ -25,6 +29,7 @@ public class ModifiedAddressEdificationDwellerRepository extends AndroidViewMode
         this.application = application;
 
     }
+
 
     public ModifiedAddressEdificationDwellerDAO getDao() {
 
@@ -36,11 +41,13 @@ public class ModifiedAddressEdificationDwellerRepository extends AndroidViewMode
 
     }
 
+
     public void setDao(ModifiedAddressEdificationDwellerDAO dao) {
 
         this.dao = dao;
 
     }
+
 
     public LiveData<List<ModifiedAddressEdificationDwellerModel>> getDwellersOfModifiedAddressEdification(Integer modifiedAddress, Integer edification){
 
@@ -51,5 +58,17 @@ public class ModifiedAddressEdificationDwellerRepository extends AndroidViewMode
         return modifiedAddressEdificationDwellers;
 
     }
+
+
+    public LiveData<ModifiedAddressEdificationDwellerModel> getModifiedAddressEdificationDweller(Integer modifiedAddress, Integer edification, Integer dweller){
+
+        if (modifiedAddressEdificationDweller ==null)
+
+            modifiedAddressEdificationDweller = getDao().getModifiedAddressEdificationDweller(modifiedAddress, edification, dweller);
+
+        return modifiedAddressEdificationDweller;
+
+    }
+
 
 }

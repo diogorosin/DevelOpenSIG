@@ -4,8 +4,8 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
-import br.com.developen.sig.database.modified.ModifiedAddressDAO;
-import br.com.developen.sig.database.modified.ModifiedAddressModel;
+import br.com.developen.sig.database.ModifiedAddressDAO;
+import br.com.developen.sig.database.ModifiedAddressModel;
 import br.com.developen.sig.util.DB;
 
 public class ModifiedAddressRepository extends AndroidViewModel {

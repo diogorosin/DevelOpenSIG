@@ -19,7 +19,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import br.com.developen.sig.R;
-import br.com.developen.sig.database.modified.ModifiedAddressModel;
+import br.com.developen.sig.database.ModifiedAddressModel;
 import br.com.developen.sig.repository.ModifiedAddressRepository;
 
 public class ModifiedAddressLocationFragment extends Fragment implements OnMapReadyCallback {

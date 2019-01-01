@@ -16,7 +16,7 @@ import android.view.View;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationModel;
+import br.com.developen.sig.database.ModifiedAddressEdificationModel;
 import br.com.developen.sig.fragment.ModifiedAddressAddressFragment;
 import br.com.developen.sig.fragment.ModifiedAddressEdificationFragment;
 import br.com.developen.sig.fragment.ModifiedAddressLocationFragment;

@@ -11,7 +11,7 @@ import java.util.List;
 
 import br.com.developen.sig.fragment.ModifiedAddressEdificationDwellerFragment;
 import br.com.developen.sig.R;
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationDwellerModel;
+import br.com.developen.sig.database.ModifiedAddressEdificationDwellerModel;
 import br.com.developen.sig.util.StringUtils;
 
 public class ModifiedAddressEdificationDwellerRecyclerViewAdapter
@@ -45,10 +45,10 @@ public class ModifiedAddressEdificationDwellerRecyclerViewAdapter
 
         switch (viewType){
 
-            case INDIVIDUAL: layout = R.layout.fragment_modified_address_edification_dweller_row_individual;
+            case INDIVIDUAL: layout = R.layout.fragment_modified_address_edification_dweller_list_individual;
                 break;
 
-            case ORGANIZATION: layout = R.layout.fragment_modified_address_edification_dweller_row_organization;
+            case ORGANIZATION: layout = R.layout.fragment_modified_address_edification_dweller_list_organization;
                 break;
 
         }
@@ -150,9 +150,9 @@ public class ModifiedAddressEdificationDwellerRecyclerViewAdapter
 
             super(view);
 
-            nameOrDenomination = view.findViewById(R.id.fragment_modified_address_edification_dweller_row_nameOrDenomination_textview);
+            nameOrDenomination = view.findViewById(R.id.fragment_modified_address_edification_dweller_list_nameOrDenomination_textview);
 
-            from = view.findViewById(R.id.fragment_modified_address_edification_dweller_row_from_textview);
+            from = view.findViewById(R.id.fragment_modified_address_edification_dweller_list_from_textview);
 
         }
 

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.developen.sig.R;
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationDwellerModel;
+import br.com.developen.sig.database.ModifiedAddressEdificationDwellerModel;
 import br.com.developen.sig.repository.ModifiedAddressEdificationDwellerRepository;
 import br.com.developen.sig.widget.ModifiedAddressEdificationDwellerRecyclerViewAdapter;
 
@@ -56,7 +56,7 @@ public class ModifiedAddressEdificationDwellerFragment extends Fragment {
 
         super.onCreateView(inflater, container, savedInstanceState);
 
-        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_modified_address_edification_dweller, container, false);
+        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_modified_address_edification_dweller_list, container, false);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
 

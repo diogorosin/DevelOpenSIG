@@ -10,7 +10,7 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 import br.com.developen.sig.database.CityVO;
-import br.com.developen.sig.database.modified.ModifiedAddressVO;
+import br.com.developen.sig.database.ModifiedAddressVO;
 import br.com.developen.sig.exception.CannotInitializeDatabaseException;
 import br.com.developen.sig.exception.InternalException;
 import br.com.developen.sig.util.Constants;

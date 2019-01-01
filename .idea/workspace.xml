@@ -17,13 +17,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80160f19-2632-4dce-be23-1c2db21e4f9e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/util/StringUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_door_entry_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_door_exit_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/individual.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/organization.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_row_individual.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_row_organization.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressEdificationDwellerActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationDwellerIndividualFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationDwellerOrganizationFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_modified_address_edification_dweller.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_individual.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_list.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_organization.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_modified_address_edification_dweller.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterDir="false" />
@@ -33,37 +34,41 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/AddressActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/AddressFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressAddressFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/DwellerFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationDwellerFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/EdificationActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressEdificationActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/EdificationFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/LocationFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressLocationFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/MapActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/MapActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/TypeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationTypeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationDwellerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationDwellerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationDwellerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationDwellerModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationDwellerVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationDwellerVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressEdificationActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressEdificationActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/ModifiedAddressDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/ModifiedAddressEdificationDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationDwellerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/ModifiedAddressEdificationDwellerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationDwellerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/ModifiedAddressEdificationDwellerModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationDwellerVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/ModifiedAddressEdificationDwellerVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/ModifiedAddressEdificationModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/ModifiedAddressEdificationVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/ModifiedAddressModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/ModifiedAddressVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressAddressFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressAddressFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationDwellerFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationDwellerFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationTypeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationTypeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressLocationFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressLocationFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/repository/ModifiedAddressEdificationDwellerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/repository/ModifiedAddressEdificationDwellerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/repository/ModifiedAddressEdificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/repository/ModifiedAddressEdificationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/repository/ModifiedAddressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/repository/ModifiedAddressRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/task/CreateAddressAsynTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/task/CreateAddressAsynTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/task/EditAddressAsynTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/task/EditAddressAsynTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/task/UpdateAddressLocationAsynTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/task/UpdateAddressLocationAsynTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/util/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/util/DB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/widget/ModifiedAddressEdificationDwellerRecyclerViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/widget/ModifiedAddressEdificationDwellerRecyclerViewAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/widget/ModifiedAddressEdificationRecyclerViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/widget/ModifiedAddressEdificationRecyclerViewAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/fragment_edification_row_rounded_label.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/fragment_modified_address_edification_row_rounded_label.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_address.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_modified_address.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_edification.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_modified_address_edification.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_address.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_address.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dweller.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dweller_individual.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dweller_organization.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edification.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edification_house.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_row_house.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_location.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_location.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_type.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_type.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_address.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_modified_address.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_edification.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_modified_address_edification.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/fragment_modified_address_edification_row_rounded_label.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/fragment_modified_address_edification_list_rounded_label.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_row_individual.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_list_individual.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_row_organization.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_list_organization.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_row_house.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_list_house.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -99,11 +104,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="fragment_modified_address_edification_dweller_row_individual.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_row_individual.xml">
+      <file leaf-file-name="fragment_modified_address_edification_dweller_organization.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_organization.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
+            <state relative-caret-position="210">
+              <caret line="14" column="60" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
+              <folding>
+                <element signature="e#1577#1597#0" expanded="true" />
+                <element signature="e#2302#2321#0" expanded="true" />
+              </folding>
             </state>
           </provider>
           <provider editor-type-id="android-designer2">
@@ -111,15 +120,74 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_modified_address_edification_dweller_row_organization.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_row_organization.xml">
+      <file leaf-file-name="ModifiedAddressEdificationDwellerOrganizationFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationDwellerOrganizationFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+            <state relative-caret-position="825">
+              <caret line="55" column="43" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
+        </entry>
+      </file>
+      <file leaf-file-name="ModifiedAddressEdificationDwellerActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressEdificationDwellerActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="705">
+              <caret line="75" column="30" selection-end-line="174" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModifiedAddressEdificationDwellerIndividualFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationDwellerIndividualFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1110">
+              <caret line="139" selection-start-line="139" selection-end-line="139" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4319#5827#0" expanded="true" />
+                <element signature="e#5826#5827#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModifiedAddressEdificationDwellerFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationDwellerFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="37" column="60" selection-start-line="37" selection-start-column="60" selection-end-line="37" selection-end-column="60" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModifiedAddressEdificationActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressEdificationActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="885">
+              <caret line="148" selection-start-line="148" selection-end-line="148" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModifiedAddressEdificationDwellerModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/ModifiedAddressEdificationDwellerModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="94" selection-start-line="94" selection-end-line="94" />
+            </state>
           </provider>
         </entry>
       </file>
@@ -2645,18 +2713,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_address.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_edification.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_edification.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationDAO.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/repository/ModifiedAddressEdificationRepository.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/AddressActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationModel.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/TypeFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/repository/ModifiedAddressEdificationDwellerRepository.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/EdificationFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/AddressEdificationDwellerVO.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/EdificationActivity.java" />
@@ -2688,7 +2745,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_modified_address_edification.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_dweller.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressEdificationDwellerFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressEdificationActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_type.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressEdificationTypeFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressAddressFragment.java" />
@@ -2696,6 +2752,18 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_row_house.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_row_organization.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_row_individual.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressEdificationActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_list_house.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_list_individual.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_modified_address_edification_dweller.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_individual.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/ModifiedAddressEdificationDwellerDAO.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/repository/ModifiedAddressEdificationDwellerRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_organization.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationDwellerIndividualFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationDwellerOrganizationFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressEdificationDwellerActivity.java" />
       </list>
     </option>
   </component>
@@ -2713,30 +2781,13 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="DevelOpenSIG" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DevelOpenSIG" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="AndroidView">
         <subPane>
           <expand>
             <path>
               <item name="DevelOpenSIG" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="DevelOpenSIG" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
             </path>
             <path>
               <item name="DevelOpenSIG" type="1abcf292:AndroidViewProjectNode" />
@@ -2753,7 +2804,19 @@
               <item name="DevelOpenSIG" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="database" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DevelOpenSIG" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="fragment" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DevelOpenSIG" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="widget" type="cbb59c9e:AndroidPsiDirectoryNode" />
             </path>
             <path>
               <item name="DevelOpenSIG" type="1abcf292:AndroidViewProjectNode" />
@@ -2766,11 +2829,17 @@
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
               <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
             <path>
-              <item name="DevelOpenSIG" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="menu" type="ddeffd01:AndroidResFolderTypeNode" />
+              <item name="DevelOpenSIG" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DevelOpenSIG" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -2788,28 +2857,31 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/menu" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig" />
+    </key>
+    <key name="android.template.packageName">
+      <recent name="br.com.developen.sig" />
+      <recent name="br.com.developen.activity_splash_image" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
     </key>
-    <key name="android.template.packageName">
-      <recent name="br.com.developen.activity_splash_image" />
-      <recent name="br.com.developen.sig" />
-    </key>
-    <key name="android.template.parentActivityClass">
-      <recent name="" />
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="br.com.developen.sig.database" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.com.developen.sig.fragment" />
       <recent name="br.com.developen.sig.widget" />
       <recent name="br.com.developen.sig" />
       <recent name="br.com.developen.sig.database" />
       <recent name="br.com.developen.sig.repository" />
-      <recent name="br.com.developen.sig.database.modified" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/menu" />
-      <recent name="$PROJECT_DIR$/app/src/main/java/br/com/developen/sig" />
+    <key name="android.template.parentActivityClass">
+      <recent name="" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -2982,7 +3054,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545849793107</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Modificações referentes a inlclusão/edição de edificações.">
+      <created>1546037309918</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1546037309918</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3012,7 +3091,7 @@
       <window_info id="Captures" order="4" weight="0.25" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.39256865" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.450727" />
       <window_info anchor="bottom" id="Build" order="8" sideWeight="0.4983845" weight="0.6035503" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32781065" />
       <window_info anchor="right" id="Gradle" order="7" sideWeight="0.49940827" weight="0.32956383" />
@@ -3030,6 +3109,39 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="bottom" id="Build" order="8" sideWeight="0.4983845" weight="0.6035503" />
+      <window_info id="Designer" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5976331" />
+      <window_info id="Build Variants" order="3" side_tool="true" />
+      <window_info id="Image Layers" order="7" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Android Profiler" order="12" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Captures" order="4" weight="0.25" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50080776" side_tool="true" weight="0.49822485" />
+      <window_info anchor="right" id="Preview" order="0" weight="0.3298217" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Device File Explorer" order="8" sideWeight="0.5005917" side_tool="true" weight="0.32956383" />
+      <window_info anchor="bottom" id="Logcat" order="10" sideWeight="0.49919224" weight="0.49822485" />
+      <window_info anchor="bottom" id="Version Control" order="6" weight="0.32781065" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32897863" />
+      <window_info anchor="right" id="Gradle" order="7" sideWeight="0.49940827" weight="0.32956383" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.450727" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32897863" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.32781065" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32781065" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -3070,77 +3182,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Modificações referentes a inlclusão/edição de edificações." />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/repository/ModifiedAddressEdificationDwellerRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/IndividualVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="38" column="30" lean-forward="true" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/bean/IndividualBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1335">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/AddressEdificationDwellerVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="68" lean-forward="true" selection-start-line="51" selection-end-line="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationDwellerVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationDwellerModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/modified/ModifiedAddressEdificationDwellerDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="70" column="67" lean-forward="true" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2295">
-          <caret line="176" selection-start-line="176" selection-end-line="176" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/util/StringUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="86" column="55" lean-forward="true" selection-start-line="86" selection-start-column="55" selection-end-line="86" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/activity_splash_image.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -3183,7 +3224,7 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/fragment_modified_address_edification_row_rounded_label.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/fragment_modified_address_edification_list_rounded_label.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="8" lean-forward="true" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
@@ -3257,33 +3298,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_address.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1065">
-          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/SplashActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
-          <folding>
-            <element signature="e#1901#1933#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3304,94 +3322,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_location.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="39" lean-forward="true" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_modified_address_edification.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="55" lean-forward="true" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="55" />
-          <folding>
-            <element signature="e#1276#1312#0" expanded="true" />
-            <element signature="e#2599#2639#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_modified_address.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressEdificationActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="789">
-          <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_type.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/MapActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="62" column="13" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3419,16 +3353,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationDwellerFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-675">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressAddressFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
@@ -3439,32 +3363,264 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_row_house.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state />
+        <state relative-caret-position="465">
+          <caret line="133" selection-start-line="123" selection-end-line="133" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
       </provider>
-      <provider editor-type-id="android-designer2">
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#2289#2350#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_row_organization.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_modified_address_edification.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+        <state relative-caret-position="1">
+          <caret line="23" column="16" lean-forward="true" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_row_individual.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_list.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
+        <state relative-caret-position="90">
+          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_list_individual.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="44" lean-forward="true" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_list_organization.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="47" lean-forward="true" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_list.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="58" lean-forward="true" selection-start-line="3" selection-start-column="58" selection-end-line="3" selection-end-column="58" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_list_house.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="35" lean-forward="true" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_type.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_location.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="39" lean-forward="true" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_address.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="759">
+          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_modified_address_edification_dweller.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="50" selection-start-line="44" selection-start-column="50" selection-end-line="44" selection-end-column="50" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_modified_address.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="57" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="57" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_individual.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="153" column="52" lean-forward="true" selection-start-line="153" selection-start-column="52" selection-end-line="153" selection-end-column="52" />
+          <folding>
+            <element signature="e#1565#1579#0" expanded="true" />
+            <element signature="e#2285#2305#0" expanded="true" />
+            <element signature="e#3002#3022#0" expanded="true" />
+            <element signature="e#3721#3734#0" expanded="true" />
+            <element signature="e#4430#4448#0" expanded="true" />
+            <element signature="e#5144#5162#0" expanded="true" />
+            <element signature="e#5855#5872#0" expanded="true" />
+            <element signature="e#6568#6588#0" expanded="true" />
+            <element signature="e#7283#7302#0" expanded="true" />
+            <element signature="e#7994#8010#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/ModifiedAddressEdificationDwellerDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="12" column="52" lean-forward="true" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/repository/ModifiedAddressEdificationDwellerRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/ModifiedAddressEdificationDwellerVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_modified_address_edification_dweller_organization.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="60" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
+          <folding>
+            <element signature="e#1577#1597#0" expanded="true" />
+            <element signature="e#2302#2321#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationDwellerFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="37" column="60" selection-start-line="37" selection-start-column="60" selection-end-line="37" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/database/ModifiedAddressEdificationDwellerModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressEdificationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="885">
+          <caret line="148" selection-start-line="148" selection-end-line="148" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationDwellerIndividualFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="139" selection-start-line="139" selection-end-line="139" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4319#5827#0" expanded="true" />
+            <element signature="e#5826#5827#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/fragment/ModifiedAddressEdificationDwellerOrganizationFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="55" column="43" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/developen/sig/ModifiedAddressEdificationDwellerActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="75" column="30" selection-end-line="174" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>

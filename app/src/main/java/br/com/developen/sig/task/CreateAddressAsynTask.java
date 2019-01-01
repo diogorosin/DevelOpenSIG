@@ -7,10 +7,9 @@ import android.os.AsyncTask;
 import java.lang.ref.WeakReference;
 import java.util.Date;
 
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationDwellerModel;
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationDwellerVO;
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationVO;
-import br.com.developen.sig.database.modified.ModifiedAddressVO;
+import br.com.developen.sig.database.ModifiedAddressEdificationDwellerVO;
+import br.com.developen.sig.database.ModifiedAddressEdificationVO;
+import br.com.developen.sig.database.ModifiedAddressVO;
 import br.com.developen.sig.exception.CannotInitializeDatabaseException;
 import br.com.developen.sig.exception.InternalException;
 import br.com.developen.sig.util.Constants;

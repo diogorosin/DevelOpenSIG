@@ -6,8 +6,8 @@ import android.arch.lifecycle.LiveData;
 
 import java.util.List;
 
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationDAO;
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationModel;
+import br.com.developen.sig.database.ModifiedAddressEdificationDAO;
+import br.com.developen.sig.database.ModifiedAddressEdificationModel;
 import br.com.developen.sig.util.DB;
 
 public class ModifiedAddressEdificationRepository extends AndroidViewModel {

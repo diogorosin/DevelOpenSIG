@@ -57,5 +57,21 @@
     <string name="button_ok">Ok</string>
     <string name="title_activity_address">Endereço</string>
     <string name="title_activity_edification">Edificação</string>
+    <string name="title_activity_modified_address_edification_dweller">
+        ModifiedAddressEdificationDwellerActivity
+    </string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="name">Nome</string>
+    <string name="motherName">Mãe</string>
+    <string name="fatherName">Pai</string>
+    <string name="cpf">CPF</string>
+    <string name="rgNumber">RG</string>
+    <string name="rgAgency">Órgão</string>
+    <string name="rgState">Estado</string>
+    <string name="birthPlace">Naturalidade</string>
+    <string name="birthDate">Nascimento</string>
+    <string name="gender">Gênero</string>
+    <string name="socialName">Razão Social</string>
+    <string name="fancyName">Fantasia</string>
 
 </resources>

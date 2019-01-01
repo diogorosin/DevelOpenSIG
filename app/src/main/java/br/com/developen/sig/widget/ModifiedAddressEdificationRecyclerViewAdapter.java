@@ -11,7 +11,7 @@ import java.util.List;
 
 import br.com.developen.sig.fragment.ModifiedAddressEdificationFragment;
 import br.com.developen.sig.R;
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationModel;
+import br.com.developen.sig.database.ModifiedAddressEdificationModel;
 
 public class ModifiedAddressEdificationRecyclerViewAdapter
         extends RecyclerView.Adapter<ModifiedAddressEdificationRecyclerViewAdapter.ModifiedAddressEdificationViewHolder> {
@@ -42,7 +42,7 @@ public class ModifiedAddressEdificationRecyclerViewAdapter
 
         switch (viewType){
 
-            case HOUSE_EDIFICATION: layout = R.layout.fragment_modified_address_edification_row_house;
+            case HOUSE_EDIFICATION: layout = R.layout.fragment_modified_address_edification_list_house;
                 break;
 
         }
@@ -146,9 +146,9 @@ public class ModifiedAddressEdificationRecyclerViewAdapter
 
             super(view);
 
-            dwellersCount = view.findViewById(R.id.fragment_modified_address_edification_row_dwellers_count_textview);
+            dwellersCount = view.findViewById(R.id.fragment_modified_address_edification_list_dwellers_count_textview);
 
-            title = view.findViewById(R.id.fragment_modified_address_edification_row_title_textview);
+            title = view.findViewById(R.id.fragment_modified_address_edification_list_title_textview);
 
         }
 

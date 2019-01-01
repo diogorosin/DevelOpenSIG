@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import br.com.developen.sig.R;
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationModel;
+import br.com.developen.sig.database.ModifiedAddressEdificationModel;
 import br.com.developen.sig.repository.ModifiedAddressEdificationRepository;
 
 public class ModifiedAddressEdificationTypeFragment extends Fragment {

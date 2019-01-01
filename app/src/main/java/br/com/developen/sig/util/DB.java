@@ -28,12 +28,12 @@ import br.com.developen.sig.database.StateVO;
 import br.com.developen.sig.database.SubjectDAO;
 import br.com.developen.sig.database.SubjectVO;
 import br.com.developen.sig.database.SubjectView;
-import br.com.developen.sig.database.modified.ModifiedAddressDAO;
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationDAO;
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationDwellerDAO;
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationDwellerVO;
-import br.com.developen.sig.database.modified.ModifiedAddressEdificationVO;
-import br.com.developen.sig.database.modified.ModifiedAddressVO;
+import br.com.developen.sig.database.ModifiedAddressDAO;
+import br.com.developen.sig.database.ModifiedAddressEdificationDAO;
+import br.com.developen.sig.database.ModifiedAddressEdificationDwellerDAO;
+import br.com.developen.sig.database.ModifiedAddressEdificationDwellerVO;
+import br.com.developen.sig.database.ModifiedAddressEdificationVO;
+import br.com.developen.sig.database.ModifiedAddressVO;
 
 
 @Database(entities = {
